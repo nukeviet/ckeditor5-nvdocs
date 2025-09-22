@@ -1,0 +1,21 @@
+{
+	"Insert iframe": "Insert iframe",
+	"Update iframe": "Update iframe",
+	"The URL must not be empty.": "The URL must not be empty.",
+	"Paste the iframe URL in the input.": "Paste the iframe URL in the input.",
+	"Tip: Paste the URL into the content to embed faster.": "Tip: Paste the URL into the content to embed faster.",
+	"Iframe URL": "Iframe URL",
+	"Size": "Size",
+	"Width": "Width",
+	"Height": "Height",
+	"Ratio": "Ratio",
+	"Auto": "Auto",
+	"Fixed": "Fixed",
+	"In pixels": "In pixels",
+	"Use the format x:y": "Use the format x:y",
+	"Width must be greater than 0": "Width must be greater than 0",
+	"Height must be greater than 0": "Height must be greater than 0",
+	"Ratio must follow the x:y format": "Ratio must follow the x:y format",
+	"Iframe widget": "Iframe widget",
+	"The URL is not valid.": "The URL is not valid."
+}

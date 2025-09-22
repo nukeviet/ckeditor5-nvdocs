@@ -1,0 +1,88 @@
+# NukeViet NVBox for CKEditor5
+# @version 4.x
+# @author VINADES.,JSC <contact@vinades.vn>
+# @copyright (C) 2009-2024 VINADES.,JSC. All rights reserved
+# @license GNU/GPL version 2 or any later version
+# @see https://github.com/nukeviet The NukeViet CMS GitHub project
+#
+msgid ""
+msgstr ""
+"Language: en\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+
+msgctxt "Insert iframe"
+msgid "Insert iframe"
+msgstr "Insert iframe"
+
+msgctxt "The URL must not be empty."
+msgid "The URL must not be empty."
+msgstr "The URL must not be empty."
+
+msgctxt "Paste the iframe URL in the input."
+msgid "Paste the iframe URL in the input."
+msgstr "Paste the iframe URL in the input."
+
+msgctxt "Tip: Paste the URL into the content to embed faster."
+msgid "Tip: Paste the URL into the content to embed faster."
+msgstr "Tip: Paste the URL into the content to embed faster."
+
+msgctxt "Iframe URL"
+msgid "Iframe URL"
+msgstr "Iframe URL"
+
+msgctxt "Size"
+msgid "Size"
+msgstr "Size"
+
+msgctxt "Width"
+msgid "Width"
+msgstr "Width"
+
+msgctxt "Height"
+msgid "Height"
+msgstr "Height"
+
+msgctxt "Auto"
+msgid "Auto"
+msgstr "Auto"
+
+msgctxt "Fixed"
+msgid "Fixed"
+msgstr "Fixed"
+
+msgctxt "Ratio"
+msgid "Ratio"
+msgstr "Ratio"
+
+msgctxt "In pixels"
+msgid "In pixels"
+msgstr "In pixels"
+
+msgctxt "Use the format x:y"
+msgid "Use the format x:y"
+msgstr "Use the format x:y"
+
+msgctxt "Width must be greater than 0"
+msgid "Width must be greater than 0"
+msgstr "Width must be greater than 0"
+
+msgctxt "Height must be greater than 0"
+msgid "Height must be greater than 0"
+msgstr "Height must be greater than 0"
+
+msgctxt "Ratio must follow the x:y format"
+msgid "Ratio must follow the x:y format"
+msgstr "Ratio must follow the x:y format"
+
+msgctxt "Update iframe"
+msgid "Update iframe"
+msgstr "Update iframe"
+
+msgctxt "Iframe widget"
+msgid "Iframe widget"
+msgstr "Iframe widget"
+
+msgctxt "The URL is not valid."
+msgid "The URL is not valid."
+msgstr "The URL is not valid."

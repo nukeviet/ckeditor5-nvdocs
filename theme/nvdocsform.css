@@ -1,0 +1,221 @@
+/*
+ * Copyright (c) 2003-2025, CKSource Holding sp. z o.o. All rights reserved.
+ * For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-licensing-options
+ */
+
+@import "@ckeditor/ckeditor5-ui/theme/mixins/_rwd.css";
+
+.ck.ck-iframe-form {
+  @mixin ck-media-phone {
+    &.ck-iframe-form {
+      width: calc(100vw - var(--ck-spacing-large) - 32px);
+      padding: var(--ck-spacing-large);
+    }
+  }
+
+	>.ck-form__row {
+		padding: 0;
+		margin-bottom: var(--ck-spacing-large);
+		width: 500px;
+
+    &.ck-iframe-form__row_column {
+      width: calc(500px + var(--ck-spacing-large));
+
+      @mixin ck-media-phone {
+        width: calc(100% + var(--ck-spacing-large));
+      }
+    }
+
+    &:not(.ck-iframe-form__row_column) {
+      margin-left: 0!important;
+		  margin-right: 0!important;
+    }
+
+		@mixin ck-media-phone {
+			width: 100%;
+		}
+
+		&:last-child {
+			margin-bottom: 0;
+		}
+
+		.ck-dropdown {
+			>.ck-button {
+				border: 1px solid var(--ck-color-input-border);
+
+				&:focus {
+					outline: none;
+					border: var(--ck-focus-ring);
+					box-shadow: var(--ck-focus-outer-shadow), 0 0;
+				}
+			}
+		}
+
+    &.ck-iframe-form__row_column {
+      margin-left: calc(-0.5 * var(--ck-spacing-large))!important;
+      margin-right: calc(-0.5 * var(--ck-spacing-large))!important;
+      flex-wrap: wrap;
+
+      >div {
+        padding-left: calc(var(--ck-spacing-large) * 0.5);
+        padding-right: calc(var(--ck-spacing-large) * 0.5);
+        flex: 0 0 100%;
+        max-width: 100%;
+        margin-inline-start: 0!important;
+
+        @mixin ck-media-phone {
+          margin-bottom: var(--ck-spacing-large);
+
+          &:last-child {
+            margin-bottom: 0;
+          }
+        }
+
+        &.c1 {
+          flex: 0 0 8.3333%;
+          max-width: 8.3333%;
+          @mixin ck-media-phone {
+            flex: 0 0 100%;
+            max-width: 100%;
+          }
+        }
+
+        &.c2 {
+          flex: 0 0 16.6667%;
+          max-width: 16.6667%;
+          @mixin ck-media-phone {
+            flex: 0 0 100%;
+            max-width: 100%;
+          }
+        }
+
+        &.c3 {
+          flex: 0 0 25%;
+          max-width: 25%;
+          @mixin ck-media-phone {
+            flex: 0 0 100%;
+            max-width: 100%;
+          }
+        }
+
+        &.c4 {
+          flex: 0 0 33.3333%;
+          max-width: 33.3333%;
+          @mixin ck-media-phone {
+            flex: 0 0 100%;
+            max-width: 100%;
+          }
+        }
+
+        &.c5 {
+          flex: 0 0 41.6667%;
+          max-width: 41.6667%;
+          @mixin ck-media-phone {
+            flex: 0 0 100%;
+            max-width: 100%;
+          }
+        }
+
+        &.c6 {
+          flex: 0 0 50%;
+          max-width: 50%;
+          @mixin ck-media-phone {
+            flex: 0 0 100%;
+            max-width: 100%;
+          }
+        }
+
+        &.c7 {
+          flex: 0 0 58.3333%;
+          max-width: 58.3333%;
+          @mixin ck-media-phone {
+            flex: 0 0 100%;
+            max-width: 100%;
+          }
+        }
+
+        &.c8 {
+          flex: 0 0 66.6667%;
+          max-width: 66.6667%;
+          @mixin ck-media-phone {
+            flex: 0 0 100%;
+            max-width: 100%;
+          }
+        }
+
+        &.c9 {
+          flex: 0 0 75%;
+          max-width: 75%;
+          @mixin ck-media-phone {
+            flex: 0 0 100%;
+            max-width: 100%;
+          }
+        }
+
+        &.c10 {
+          flex: 0 0 83.3333%;
+          max-width: 83.3333%;
+          @mixin ck-media-phone {
+            flex: 0 0 100%;
+            max-width: 100%;
+          }
+        }
+
+        &.c11 {
+          flex: 0 0 91.6667%;
+          max-width: 91.6667%;
+          @mixin ck-media-phone {
+            flex: 0 0 100%;
+            max-width: 100%;
+          }
+        }
+
+        &.c12 {
+          flex: 0 0 100%;
+          max-width: 100%;
+          @mixin ck-media-phone {
+            flex: 0 0 100%;
+            max-width: 100%;
+          }
+        }
+
+        .ck-input {
+          flex: 0 0 100%;
+          max-width: 100%;
+          min-width: 0;
+        }
+
+        .ck-dropdown {
+          flex: 0 0 100%;
+          max-width: 100%;
+          min-width: 0;
+
+          >.ck-button {
+            display: flex;
+            justify-content: space-between;
+          }
+        }
+      }
+    }
+	}
+}
+
+@mixin ck-media-phone {
+  .ck.ck-responsive-form.ck-iframe-form {
+    .ck-labeled-field-view {
+      margin: 0;
+    }
+  }
+}
+
+.ck-iframe-form__row_single {
+	>div {
+		flex: 0 0 100%;
+		max-width: 100%;
+
+		.ck-input {
+			flex: 0 0 100%;
+			max-width: 100%;
+		}
+	}
+}

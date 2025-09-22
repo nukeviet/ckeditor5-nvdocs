@@ -1,0 +1,53 @@
+{
+  "name": "@nukeviet/ckeditor5-nvdocs",
+  "version": "46.0.2",
+  "description": "Online Document Viewer Plugin for CKEditor 5 integrated with NukeViet.",
+  "keywords": [
+    "nukeviet",
+    "nukeviet 4",
+    "nukeviet 4.5",
+    "nukeviet 4.6",
+    "nukeviet 5",
+    "nukeviet ckeditor",
+    "nukeviet ckeditor5"
+  ],
+  "type": "module",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "peerDependencies": {
+    "ckeditor5": "46.0.2"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./*": "./dist/*",
+    "./browser/*": null,
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "ckeditor5-metadata.json"
+  ],
+  "devDependencies": {
+    "@ckeditor/ckeditor5-dev-build-tools": "^43.1.0",
+    "@ckeditor/ckeditor5-package-tools": "^4.0.2",
+    "typescript": "5.0.4"
+  },
+  "author": "VINADES.,JSC (https://vinades.vn/)",
+  "license": "GPL-2.0-or-later",
+  "homepage": "https://nukeviet.vn/",
+  "bugs": "https://github.com/nukeviet/nukeviet/issues",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nukeviet/ckeditor5-nvdocs.git"
+  },
+  "scripts": {
+    "build:dist": "node ./scripts/build-dist.mjs",
+    "prepare": "npm run build:dist",
+    "translations:synchronize": "ckeditor5-package-tools translations:synchronize && node ./scripts/prune-locales.mjs",
+    "translations:validate": "ckeditor5-package-tools translations:synchronize --validate-only"
+  }
+}

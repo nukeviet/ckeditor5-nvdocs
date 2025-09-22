@@ -1,0 +1,18 @@
+node_modules
+dist/
+yarn.lock
+package-lock.json
+
+# Files associated with specific development environments.
+.DS_Store
+.idea
+.vscode
+
+# Ignore yalc
+.yalc
+yalc.lock
+
+# Ignore compiled TypeScript files.
+src/**/*.js
+src/**/*.js.map
+src/**/*.d.ts

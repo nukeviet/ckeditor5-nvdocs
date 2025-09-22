@@ -1,0 +1,88 @@
+# NukeViet NVBox for CKEditor5
+# @version 4.x
+# @author VINADES.,JSC <contact@vinades.vn>
+# @copyright (C) 2009-2024 VINADES.,JSC. All rights reserved
+# @license GNU/GPL version 2 or any later version
+# @see https://github.com/nukeviet The NukeViet CMS GitHub project
+#
+msgid ""
+msgstr ""
+"Language: vi\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+
+msgctxt "Insert iframe"
+msgid "Insert iframe"
+msgstr "Chèn iframe"
+
+msgctxt "The URL must not be empty."
+msgid "The URL must not be empty."
+msgstr "URL không được để trống."
+
+msgctxt "Paste the iframe URL in the input."
+msgid "Paste the iframe URL in the input."
+msgstr "Dán URL iframe vào ô nhập."
+
+msgctxt "Tip: Paste the URL into the content to embed faster."
+msgid "Tip: Paste the URL into the content to embed faster."
+msgstr "Mẹo: Dán URL vào ô nhập để thao tác nhanh hơn."
+
+msgctxt "Iframe URL"
+msgid "Iframe URL"
+msgstr "URL iframe"
+
+msgctxt "Size"
+msgid "Size"
+msgstr "Kích thước"
+
+msgctxt "Width"
+msgid "Width"
+msgstr "Chiều rộng"
+
+msgctxt "Height"
+msgid "Height"
+msgstr "Chiều cao"
+
+msgctxt "Auto"
+msgid "Auto"
+msgstr "Tự động"
+
+msgctxt "Fixed"
+msgid "Fixed"
+msgstr "Cố định"
+
+msgctxt "Ratio"
+msgid "Ratio"
+msgstr "Tỷ lệ"
+
+msgctxt "In pixels"
+msgid "In pixels"
+msgstr "Đơn vị pixel"
+
+msgctxt "Use the format x:y"
+msgid "Use the format x:y"
+msgstr "Nhập dạng x:y"
+
+msgctxt "Width must be greater than 0"
+msgid "Width must be greater than 0"
+msgstr "Chiều rộng phải lớn hơn 0"
+
+msgctxt "Height must be greater than 0"
+msgid "Height must be greater than 0"
+msgstr "Chiều cao phải lớn hơn 0"
+
+msgctxt "Ratio must follow the x:y format"
+msgid "Ratio must follow the x:y format"
+msgstr "Tỷ lệ phải theo định dạng x:y"
+
+msgctxt "Update iframe"
+msgid "Update iframe"
+msgstr "Cập nhật iframe"
+
+msgctxt "Iframe widget"
+msgid "Iframe widget"
+msgstr "Widget iframe"
+
+msgctxt "The URL is not valid."
+msgid "The URL is not valid."
+msgstr "URL không hợp lệ."

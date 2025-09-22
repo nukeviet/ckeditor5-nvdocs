@@ -1,0 +1,45 @@
+.ck-content {
+  .ck-widget.nvck-iframe {
+    user-select: none;
+    position: relative;
+    width: 100%;
+    margin-bottom: .5rem;
+
+    >.nvck-iframe-inner {
+      >.nvck-iframe-element {
+        border: none;
+        z-index: -1;
+        margin: 0 auto;
+        display: block;
+      }
+
+      &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.1);
+        z-index: 1;
+      }
+    }
+
+    &.nvck-iframe-responsive {
+      height: 0;
+
+      >.nvck-iframe-inner {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+
+        >.nvck-iframe-element {
+          width: 100%;
+          height: 100%;
+        }
+      }
+    }
+  }
+}

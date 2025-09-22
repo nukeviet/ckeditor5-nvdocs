@@ -1,0 +1,88 @@
+# NukeViet NVBox for CKEditor5
+# @version 4.x
+# @author VINADES.,JSC <contact@vinades.vn>
+# @copyright (C) 2009-2024 VINADES.,JSC. All rights reserved
+# @license GNU/GPL version 2 or any later version
+# @see https://github.com/nukeviet The NukeViet CMS GitHub project
+#
+msgid ""
+msgstr ""
+"Language: fr\n"
+"Plural-Forms: nplurals=2; plural=(n <= -2 || n >= 2);\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+
+msgctxt "Insert iframe"
+msgid "Insert iframe"
+msgstr "Insérer un iframe"
+
+msgctxt "The URL must not be empty."
+msgid "The URL must not be empty."
+msgstr "L'URL ne doit pas être vide."
+
+msgctxt "Paste the iframe URL in the input."
+msgid "Paste the iframe URL in the input."
+msgstr "Collez l'URL de l'iframe dans le champ."
+
+msgctxt "Tip: Paste the URL into the content to embed faster."
+msgid "Tip: Paste the URL into the content to embed faster."
+msgstr "Astuce : Collez l'URL dans le contenu pour l'intégrer plus rapidement."
+
+msgctxt "Iframe URL"
+msgid "Iframe URL"
+msgstr "URL de l'iframe"
+
+msgctxt "Size"
+msgid "Size"
+msgstr "Taille"
+
+msgctxt "Width"
+msgid "Width"
+msgstr "Largeur"
+
+msgctxt "Height"
+msgid "Height"
+msgstr "Hauteur"
+
+msgctxt "Auto"
+msgid "Auto"
+msgstr "Automatique"
+
+msgctxt "Fixed"
+msgid "Fixed"
+msgstr "Fixe"
+
+msgctxt "Ratio"
+msgid "Ratio"
+msgstr "Rapport"
+
+msgctxt "In pixels"
+msgid "In pixels"
+msgstr "En pixels"
+
+msgctxt "Use the format x:y"
+msgid "Use the format x:y"
+msgstr "Utilisez le format x:y"
+
+msgctxt "Width must be greater than 0"
+msgid "Width must be greater than 0"
+msgstr "La largeur doit être supérieure à 0"
+
+msgctxt "Height must be greater than 0"
+msgid "Height must be greater than 0"
+msgstr "La hauteur doit être supérieure à 0"
+
+msgctxt "Ratio must follow the x:y format"
+msgid "Ratio must follow the x:y format"
+msgstr "Le rapport doit suivre le format x:y"
+
+msgctxt "Update iframe"
+msgid "Update iframe"
+msgstr "Mettre à jour l'iframe"
+
+msgctxt "Iframe widget"
+msgid "Iframe widget"
+msgstr "Widget Iframe"
+
+msgctxt "The URL is not valid."
+msgid "The URL is not valid."
+msgstr "L'URL n'est pas valide."
