@@ -1,5 +1,5 @@
 /**
- * NukeViet NVIframe for CKEditor5
+ * NukeViet NVDocs for CKEditor5
  * @version 5.x
  * @author VINADES.,JSC <contact@vinades.vn>
  * @copyright (C) 2009-2025 VINADES.,JSC. All rights reserved
@@ -27,12 +27,12 @@ import {
 import { FocusTracker, KeystrokeHandler, type Locale } from 'ckeditor5/src/utils.js';
 
 import '@ckeditor/ckeditor5-ui/theme/components/responsive-form/responsiveform.css';
-import '../../../theme/iframeform.css';
+import '../../../theme/nvdocsform.css';
 
 /**
- * The iframe form view controller class.
+ * The nvdocs form view controller class.
  */
-export class NVIframeFormView extends View {
+export class NVDocsFormView extends View {
 	/**
 	 * Tracks information about the DOM focus in the form.
 	 */
@@ -46,27 +46,27 @@ export class NVIframeFormView extends View {
 	/**
 	 * The value of the URL input.
 	 */
-	declare public iframeURLInputValue: string;
+	declare public nvdocsURLInputValue: string;
 
 	/**
-	 * Chiều cao iframe
+	 * Chiều cao nvdocs
 	 */
-	declare public iframeHeightInputValue: number;
+	declare public nvdocsHeightInputValue: number;
 
 	/**
-	 * Chiều rộng iframe
+	 * Chiều rộng nvdocs
 	 */
-	declare public iframeWidthInputValue: number;
+	declare public nvdocsWidthInputValue: number;
 
 	/**
-	 * Tỷ lệ khung hình iframe
+	 * Tỷ lệ khung hình nvdocs
 	 */
-	declare public iframeRatioInputValue: [number, number] | null;
+	declare public nvdocsRatioInputValue: [number, number] | null;
 
 	/**
-	 * Kiểu chiều rộng iframe: tự động hay cố định
+	 * Kiểu chiều rộng nvdocs: tự động hay cố định
 	 */
-	declare public iframeTypeWidthValue: 'auto' | 'fixed';
+	declare public nvdocsTypeWidthValue: 'auto' | 'fixed';
 
 	/**
 	 * The URL input view.
@@ -96,30 +96,30 @@ export class NVIframeFormView extends View {
 	/**
 	 * Mảng các hàm kiểm tra tính hợp lệ của form
 	 */
-	private readonly _validators: Array<(v: NVIframeFormView) => boolean>;
+	private readonly _validators: Array<(v: NVDocsFormView) => boolean>;
 
 	/**
-	 * Nhãn của ô nhập URL iframe mặc định
+	 * Nhãn của ô nhập URL nvdocs mặc định
 	 */
 	private _urlInputViewInfoDefault?: string;
 
 	/**
-	 * Text mẹo cho ô nhập URL iframe.
+	 * Text mẹo cho ô nhập URL nvdocs.
 	 */
 	private _urlInputViewInfoTip?: string;
 
 	/**
-	 * Nhãn của ô nhập chiều rộng iframe mặc định
+	 * Nhãn của ô nhập chiều rộng nvdocs mặc định
 	 */
 	private _widthInputViewInfoDefault?: string;
 
 	/**
-	 * Nhãn của ô nhập chiều cao iframe mặc định
+	 * Nhãn của ô nhập chiều cao nvdocs mặc định
 	 */
 	private _heightInputViewInfoDefault?: string;
 
 	/**
-	 * Nhãn của ô nhập tỷ lệ iframe mặc định
+	 * Nhãn của ô nhập tỷ lệ nvdocs mặc định
 	 */
 	private _ratioInputViewInfoDefault?: string;
 
@@ -127,17 +127,17 @@ export class NVIframeFormView extends View {
 	 * @param validators Array of form validators.
 	 * @param locale
 	 */
-	constructor(validators: Array<(v: NVIframeFormView) => boolean>, locale: Locale) {
+	constructor(validators: Array<(v: NVDocsFormView) => boolean>, locale: Locale) {
 		super(locale);
 
 		this.focusTracker = new FocusTracker();
 		this.keystrokes = new KeystrokeHandler();
 
-		this.set('iframeURLInputValue', '');
-		this.set('iframeHeightInputValue', 315);
-		this.set('iframeWidthInputValue', 560);
-		this.set('iframeRatioInputValue', [16, 9]);
-		this.set('iframeTypeWidthValue', 'auto');
+		this.set('nvdocsURLInputValue', '');
+		this.set('nvdocsHeightInputValue', 315);
+		this.set('nvdocsWidthInputValue', 560);
+		this.set('nvdocsRatioInputValue', [16, 9]);
+		this.set('nvdocsTypeWidthValue', 'auto');
 
 		this.urlInputView = this._createUrlInput();
 		this.widthInputView = this._createWidthInput();
@@ -150,7 +150,7 @@ export class NVIframeFormView extends View {
 		// Dòng nhập URL
 		const rowInput = new FormRowView(locale);
 		rowInput.children.add(this.urlInputView);
-		rowInput.class.push('ck-iframe-form__row_single');
+		rowInput.class.push('ck-nvdocs-form__row_single');
 
 		// Dòng chọn kích thước, nhập chiều rộng, chiều cao, tỷ lệ
 		const rowType = new FormRowView(locale);
@@ -158,7 +158,7 @@ export class NVIframeFormView extends View {
 		rowType.children.add(this.widthInputView);
 		rowType.children.add(this.heightInputView);
 		rowType.children.add(this.ratioInputView);
-		rowType.class.push('ck-iframe-form__row_column');
+		rowType.class.push('ck-nvdocs-form__row_column');
 
 		this.setTemplate({
 			tag: 'form',
@@ -166,7 +166,7 @@ export class NVIframeFormView extends View {
 			attributes: {
 				class: [
 					'ck',
-					'ck-iframe-form',
+					'ck-nvdocs-form',
 					'ck-responsive-form'
 				],
 
@@ -235,7 +235,7 @@ export class NVIframeFormView extends View {
 	 */
 	public set widthType(type: 'auto' | 'fixed') {
 		const t = this.locale!.t;
-		this.set('iframeTypeWidthValue', type);
+		this.set('nvdocsTypeWidthValue', type);
 		this.typeWidthSelectView.fieldView.buttonView.set({ label: type === 'auto' ? t('Auto') : t('Fixed') });
 		this._changeTypeWidth();
 	}
@@ -244,34 +244,34 @@ export class NVIframeFormView extends View {
 	 * Get kiểu chiều rộng: 'auto' or 'fixed'
 	 */
 	public get widthType(): 'auto' | 'fixed' {
-		return this.iframeTypeWidthValue;
+		return this.nvdocsTypeWidthValue;
 	}
 
 	/**
-	 * Đặt chiều rộng iframe
+	 * Đặt chiều rộng nvdocs
 	 */
 	public set width(width: number) {
-		this.iframeWidthInputValue = width;
+		this.nvdocsWidthInputValue = width;
 		this.widthInputView.fieldView.value = width.toString();
 	}
 
 	/**
-	 * Lấy chiều rộng iframe
+	 * Lấy chiều rộng nvdocs
 	 */
 	public get width(): number {
 		return this.widthInputView.fieldView.element!.value ? parseInt(this.widthInputView.fieldView.element!.value) : 0;
 	}
 
 	/**
-	 * Đặt chiều cao iframe
+	 * Đặt chiều cao nvdocs
 	 */
 	public set height(height: number) {
-		this.iframeHeightInputValue = height;
+		this.nvdocsHeightInputValue = height;
 		this.heightInputView.fieldView.value = height.toString();
 	}
 
 	/**
-	 * Lấy chiều cao iframe
+	 * Lấy chiều cao nvdocs
 	 */
 	public get height(): number {
 		return this.heightInputView.fieldView.element!.value ? parseInt(this.heightInputView.fieldView.element!.value) : 0;
@@ -281,7 +281,7 @@ export class NVIframeFormView extends View {
 	 * Đặt tỷ lệ khung hình
 	 */
 	public set ratio(ratio: [number, number] | null) {
-		this.iframeRatioInputValue = ratio;
+		this.nvdocsRatioInputValue = ratio;
 		this.ratioInputView.fieldView.value = ratio ? ratio.join(':') : '';
 		this._changeTypeWidth();
 	}
@@ -292,10 +292,10 @@ export class NVIframeFormView extends View {
 	public get ratio(): [number, number] | null {
 		const ratio = this._parseRatio();
 		if (ratio) {
-			this.iframeRatioInputValue = ratio;
+			this.nvdocsRatioInputValue = ratio;
 			return ratio;
 		}
-		this.iframeRatioInputValue = null;
+		this.nvdocsRatioInputValue = null;
 		return null;
 	}
 
@@ -345,7 +345,7 @@ export class NVIframeFormView extends View {
 	private _changeTypeWidth() {
 		this.resetFormStatus();
 
-		if (this.iframeTypeWidthValue === 'auto') {
+		if (this.nvdocsTypeWidthValue === 'auto') {
 			this.widthInputView.element!.classList.add('ck-hidden');
 			this.heightInputView.element!.classList.add('ck-hidden');
 			this.ratioInputView.element!.classList.remove('ck-hidden');
@@ -358,7 +358,7 @@ export class NVIframeFormView extends View {
 	}
 
 	/**
-	 * Tạo ô nhập URL iframe.
+	 * Tạo ô nhập URL nvdocs.
 	 *
 	 * @returns LabeledFieldView<InputTextView>
 	 */
@@ -368,17 +368,17 @@ export class NVIframeFormView extends View {
 		const labeledInput = new LabeledFieldView(this.locale, createLabeledInputText);
 		const inputField = labeledInput.fieldView;
 
-		this._urlInputViewInfoDefault = t('Paste the iframe URL in the input.');
+		this._urlInputViewInfoDefault = t('Paste the document URL in the input.');
 		this._urlInputViewInfoTip = t('Tip: Paste the URL into the content to embed faster.');
 
-		labeledInput.label = t('Iframe URL');
+		labeledInput.label = t('Document URL');
 		labeledInput.infoText = this._urlInputViewInfoDefault;
 
 		inputField.inputMode = 'url';
 		inputField.on('input', () => {
 			// Hiển thị mẹo khi có nhập liệu, không có dữ liệu thì hiển thị nhãn mặc định
 			labeledInput.infoText = inputField.element!.value ? this._urlInputViewInfoTip! : this._urlInputViewInfoDefault!;
-			this.iframeURLInputValue = inputField.element!.value.trim();
+			this.nvdocsURLInputValue = inputField.element!.value.trim();
 		});
 
 		return labeledInput;
@@ -429,10 +429,10 @@ export class NVIframeFormView extends View {
 		dropdown.on('execute', (evt) => {
 			const buttonView = evt.source as ButtonView;
 			dropdown.buttonView.set({ label: buttonView.label });
-			this.set('iframeTypeWidthValue', buttonView.label === t('Auto') ? 'auto' : 'fixed');
+			this.set('nvdocsTypeWidthValue', buttonView.label === t('Auto') ? 'auto' : 'fixed');
 
 			// Trường hợp đổi sang tự động mà chiều rộng hoặc chiều cao lỗi thì đặt nó làm mặc định
-			if (this.iframeTypeWidthValue === 'auto') {
+			if (this.nvdocsTypeWidthValue === 'auto') {
 				if (this.width <= 0 || isNaN(this.width)) {
 					this.widthInputView.fieldView.set('value', '560');
 					this.widthInputView.fieldView.element!.value = '560';

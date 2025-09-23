@@ -154,11 +154,11 @@ export function upcastIframeDivStructure(iframeUtils: IframeUtils, editor: Edito
 		const referrerPolicy = viewIframe.getAttribute('referrerpolicy') || '';
 		const allowFullscreen = viewIframe.getAttribute('allowfullscreen') || '';
 		const frameborder = viewIframe.getAttribute('frameborder') || '';
-		if (sandbox) config.sandbox = sandbox;
-		if (allow) config.allow = allow;
-		if (referrerPolicy) config.referrerpolicy = referrerPolicy;
-		if (allowFullscreen) config.allowfullscreen = (allowFullscreen == 'true' || allowFullscreen == '1') ? true : false;
-		if (frameborder) config.frameborder = frameborder;
+		// if (sandbox) config.sandbox = sandbox;
+		// if (allow) config.allow = allow;
+		// if (referrerPolicy) config.referrerpolicy = referrerPolicy;
+		// if (allowFullscreen) config.allowfullscreen = (allowFullscreen == 'true' || allowFullscreen == '1') ? true : false;
+		// if (frameborder) config.frameborder = frameborder;
 		for (const [key, val] of Object.entries(config)) {
 			modelWriter.setAttribute(key, val, modelBox);
 		}
@@ -227,11 +227,11 @@ export function upcastPlainIframe(iframeUtils: IframeUtils, editor: Editor): (di
 		const config = editor.config.get('iframe.attributes')!;
 
 		// Đưa các attribute iframe vào
-		if (sandbox) config.sandbox = sandbox;
-		if (allow) config.allow = allow;
-		if (referrerPolicy) config.referrerpolicy = referrerPolicy;
-		if (allowFullscreen) config.allowfullscreen = true;
-		if (frameborder) config.frameborder = frameborder;
+		// if (sandbox) config.sandbox = sandbox;
+		// if (allow) config.allow = allow;
+		// if (referrerPolicy) config.referrerpolicy = referrerPolicy;
+		// if (allowFullscreen) config.allowfullscreen = true;
+		// if (frameborder) config.frameborder = frameborder;
 		for (const [key, val] of Object.entries(config)) {
 			modelWriter.setAttribute(key, val, modelBox);
 		}

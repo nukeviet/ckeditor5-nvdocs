@@ -1,5 +1,5 @@
 /**
- * NukeViet NVIframe for CKEditor5
+ * NukeViet NVDocs for CKEditor5
  * @version 5.x
  * @author VINADES.,JSC <contact@vinades.vn>
  * @copyright (C) 2009-2025 VINADES.,JSC. All rights reserved
@@ -20,18 +20,18 @@ import type {
 import { Plugin, type Editor } from 'ckeditor5';
 import { findOptimalInsertionRange, toWidget } from 'ckeditor5';
 
-export default class IframeUtils extends Plugin {
+export default class NVDocsUtils extends Plugin {
     /**
      * @inheritDoc
      */
     public static get pluginName() {
-        return 'IframeUtils' as const;
+        return 'NVDocsUtils' as const;
     }
 
     /**
      *
      */
-    public insertIframe(
+    public insertNVDocs(
         attributes: Record<string, unknown> = {},
         selectable: ModelSelection | ModelPosition | null = null
     ): ModelElement | null {
@@ -93,14 +93,14 @@ export default class IframeUtils extends Plugin {
     }
 
     /**
-     * Kiểm tra phần tử có phải là iframe không
+     * Kiểm tra phần tử có phải là nvdocs không
      */
-    public isIframe(modelElement?: ModelElement | null): modelElement is ModelElement & { name: 'iframe' } {
-        return !!modelElement && modelElement.is('element', 'iframe');
+    public isDocs(modelElement?: ModelElement | null): modelElement is ModelElement & { name: 'nvdocs' } {
+        return !!modelElement && modelElement.is('element', 'nvdocs');
     }
 
     /**
-     * Kiểm tra xem iframe có thể chèn vào vị trí hiện tại hay không
+     * Kiểm tra xem nvdocs có thể chèn vào vị trí hiện tại hay không
      *
      * @internal
      */

@@ -1,5 +1,5 @@
 /**
- * NukeViet NVIframe for CKEditor5
+ * NukeViet NVDocs for CKEditor5
  * @version 5.x
  * @author VINADES.,JSC <contact@vinades.vn>
  * @copyright (C) 2009-2025 VINADES.,JSC. All rights reserved
@@ -11,7 +11,7 @@
  * ```
  * ClassicEditor
  * 	.create(editorElement, {
- * 		iframe: {
+ * 		nvdocs: {
  * 			attributes: {
  *              sandbox: 'allow-same-origin allow-scripts',
  *              allow: 'camera; microphone; geolocation',
@@ -25,17 +25,17 @@
  * 	.catch( ... );
  * ```
  */
-export interface IframeConfig {
+export interface NVDocsConfig {
     /*
      *
      */
-    attributes?: IframeAttributes;
+    browser_url?: string;
 }
 
-export interface IframeAttributes extends Record<string, unknown> {
-    sandbox?: string;
-    allow?: string;
-    frameborder?: string;
-    referrerpolicy?: string;
-    allowfullscreen?: boolean;
-}
+// export interface NVDocsAttributes extends Record<string, unknown> {
+//     sandbox?: string;
+//     allow?: string;
+//     frameborder?: string;
+//     referrerpolicy?: string;
+//     allowfullscreen?: boolean;
+// }

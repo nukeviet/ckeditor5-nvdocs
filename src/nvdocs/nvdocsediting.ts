@@ -10,9 +10,9 @@
 /* globals window */
 
 import { Plugin } from 'ckeditor5';
-import InsertIframeCommand from './insertiframecommand.js';
-import ReplaceIframeSourceCommand from './replaceiframesourcecommand.js';
-import IframeUtils from '../nvdocsutils.js';
+import InsertIframeCommand from './insertnvdocscommand.js';
+import ReplaceIframeSourceCommand from './replacenvdocssourcecommand.js';
+import NVDocsUtils from '../nvdocsutils.js';
 import { createIframeViewElement } from './utils.js';
 import { downcastIframeAttribute, upcastIframeDivStructure, upcastPlainIframe } from './converters.js';
 
@@ -53,7 +53,7 @@ export default class IframeEditing extends Plugin {
 		const editor = this.editor;
 		const t = editor.t;
 		const conversion = editor.conversion;
-		const iframeUtils: IframeUtils = this.editor.plugins.get('IframeUtils');
+		const nvDocsUtils: NVDocsUtils = this.editor.plugins.get('NVDocsUtils');
 
 		// Model => cấu trúc div.nvck-iframe cho .getData() - submit form
 		conversion.for('dataDowncast')
@@ -66,13 +66,13 @@ export default class IframeEditing extends Plugin {
 		conversion.for('editingDowncast')
 			.elementToStructure({
 				model: 'iframe',
-				view: (modelElement, { writer }) => iframeUtils.toIframeWidget(
+				view: (modelElement, { writer }) => nvDocsUtils.toIframeWidget(
 					createIframeViewElement(writer), writer, t('Iframe widget')
 				)
 			});
 
 		// Model => attribute cho cả data và editing
-		conversion.for('downcast').add(downcastIframeAttribute(iframeUtils, [
+		conversion.for('downcast').add(downcastIframeAttribute(nvDocsUtils, [
 			'src', 'width', 'height', 'allow',
 			'allowfullscreen', 'referrerpolicy',
 			'sandbox', 'srcdoc', 'type', 'ratio'
@@ -80,7 +80,7 @@ export default class IframeEditing extends Plugin {
 
 		// div.nvck-iframe => model (sau đó để hiển thị ra lại dùng editingDowncast + downcast)
 		conversion.for('upcast')
-			.add(upcastIframeDivStructure(iframeUtils, editor)) // Upcast cấu trúc div.nvck-iframe
-			.add(upcastPlainIframe(iframeUtils, editor)); // Upcast thẻ iframe đơn thuần về cấu trúc div.nvck-iframe
+			.add(upcastIframeDivStructure(nvDocsUtils, editor)) // Upcast cấu trúc div.nvck-iframe
+			.add(upcastPlainIframe(nvDocsUtils, editor)); // Upcast thẻ iframe đơn thuần về cấu trúc div.nvck-iframe
 	}
 }

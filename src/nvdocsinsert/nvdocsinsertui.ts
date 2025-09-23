@@ -1,5 +1,5 @@
 /**
- * NukeViet NVIframe for CKEditor5
+ * NukeViet NVDocs for CKEditor5
  * @version 5.x
  * @author VINADES.,JSC <contact@vinades.vn>
  * @copyright (C) 2009-2025 VINADES.,JSC. All rights reserved
@@ -16,31 +16,31 @@ import {
     Editor
 } from 'ckeditor5';
 
-import iframeIcon from '../../theme/icons/iframe.svg';
+import nvdocsIcon from '../../theme/icons/nvdocs.svg';
 
-import { NVIframeFormView } from './ui/nviframeformview.js';
-import IframeUtils from '../nvdocsutils.js';
+import { NVDocsFormView } from './ui/nvdocsformview.js';
+import NVDocsUtils from '../nvdocsutils.js';
 
-export default class NVIframeInsertUI extends Plugin {
-    private _formView: NVIframeFormView | undefined;
+export default class NVDocsInsertUI extends Plugin {
+    private _formView: NVDocsFormView | undefined;
 
     /**
-     * Đối tượng đang chọn có phải iframe hay không
+     * Đối tượng đang chọn có phải nvdocs hay không
      */
-    declare public isIframeSelected: boolean;
+    declare public isNVDocsSelected: boolean;
 
     /**
      * @inheritDoc
      */
     public static get pluginName() {
-        return 'NVIframeInsertUI' as const;
+        return 'NVDocsInsertUI' as const;
     }
 
     /**
      * @inheritDoc
      */
     public static get requires() {
-        return [IframeUtils] as const;
+        return [NVDocsUtils] as const;
     }
 
     /**
@@ -49,17 +49,17 @@ export default class NVIframeInsertUI extends Plugin {
     public init(): void {
         const editor = this.editor;
         const selection = editor.model.document.selection;
-        const iframeUtils: IframeUtils = editor.plugins.get('IframeUtils');
+        const nvDocsUtils: NVDocsUtils = editor.plugins.get('NVDocsUtils');
 
         const componentCreator = (locale: Locale) => this._createToolbarComponent(locale);
 
-        this.set('isIframeSelected', false);
+        this.set('isNVDocsSelected', false);
         this.listenTo(editor.model.document, 'change', () => {
-            this.isIframeSelected = iframeUtils.isIframe(selection.getSelectedElement());
+            this.isNVDocsSelected = nvDocsUtils.isDocs(selection.getSelectedElement());
         });
 
-        editor.ui.componentFactory.add('nviframeInsert', componentCreator);
-        editor.ui.componentFactory.add('insertNVIframe', componentCreator);
+        editor.ui.componentFactory.add('nvdocsInsert', componentCreator);
+        editor.ui.componentFactory.add('insertNVDocs', componentCreator);
     }
 
     /**
@@ -73,12 +73,12 @@ export default class NVIframeInsertUI extends Plugin {
         const command = editor.commands.get('insertIframe')!;
         const dialogPlugin = this.editor.plugins.get('Dialog');
 
-        buttonView.icon = iframeIcon;
+        buttonView.icon = nvdocsIcon;
 
         buttonView.bind('isEnabled').to(command, 'isEnabled');
 
         buttonView.on('execute', () => {
-            if (dialogPlugin.id === 'nviframeInsert') {
+            if (dialogPlugin.id === 'nvdocsInsert') {
                 dialogPlugin.hide();
             } else {
                 this._showDialog();
@@ -89,7 +89,7 @@ export default class NVIframeInsertUI extends Plugin {
     }
 
     /**
-     * Thiết lập nút chèn iframe
+     * Thiết lập nút chèn nvdocs
      */
     private _createToolbarComponent(locale: Locale): ButtonView {
         const t = locale.t;
@@ -98,8 +98,8 @@ export default class NVIframeInsertUI extends Plugin {
         button.tooltip = true;
         button.bind('label').to(
             this,
-            'isIframeSelected',
-            isIframeSelected => isIframeSelected ? t('Update iframe') : t('Insert iframe')
+            'isNVDocsSelected',
+            isNVDocsSelected => isNVDocsSelected ? t('Update document') : t('Insert document')
         );
 
         return button;
@@ -111,19 +111,19 @@ export default class NVIframeInsertUI extends Plugin {
     private _showDialog() {
         const editor = this.editor;
         const dialog = editor.plugins.get('Dialog');
-        const command = editor.commands.get('replaceIframeSource')!;
+        const command = editor.commands.get('replaceNVDocsSource')!;
         const t = editor.locale.t;
 
-        const isIframeSelected = command.isEnabled;
+        const isNVDocsSelected = command.isEnabled;
 
         if (!this._formView) {
-            this._formView = new (CssTransitionDisablerMixin(NVIframeFormView))(getFormValidators(editor), editor.locale);
+            this._formView = new (CssTransitionDisablerMixin(NVDocsFormView))(getFormValidators(editor), editor.locale);
             this._formView.on('submit', () => this._handleSubmitForm());
         }
 
         dialog.show({
-            id: 'nviframeInsert',
-            title: isIframeSelected ? t('Update iframe') : t('Insert iframe'),
+            id: 'nvdocsInsert',
+            title: isNVDocsSelected ? t('Update document') : t('Insert document'),
             content: this._formView,
             isModal: true,
             onShow: () => {
@@ -142,7 +142,7 @@ export default class NVIframeInsertUI extends Plugin {
                     onExecute: () => dialog.hide()
                 },
                 {
-                    label: isIframeSelected ? t('Save') : t('Insert'),
+                    label: isNVDocsSelected ? t('Save') : t('Insert'),
                     class: 'ck-button-action',
                     withText: true,
                     onExecute: () => this._handleSubmitForm()
@@ -180,9 +180,9 @@ export default class NVIframeInsertUI extends Plugin {
  * @param t
  * @returns
  */
-function getFormValidators(editor: Editor): Array<(v: NVIframeFormView) => boolean> {
+function getFormValidators(editor: Editor): Array<(v: NVDocsFormView) => boolean> {
     const t = editor.locale.t;
-    const iframeUtils: IframeUtils = editor.plugins.get('IframeUtils');
+    const nvDocsUtils: NVDocsUtils = editor.plugins.get('NVDocsUtils');
 
     return [
         // Kiểm tra URL không được để trống
@@ -191,7 +191,7 @@ function getFormValidators(editor: Editor): Array<(v: NVIframeFormView) => boole
                 form.urlInputView.errorText = t('The URL must not be empty.');
                 return false;
             }
-            if (!iframeUtils.isUrl(form.url)) {
+            if (!nvDocsUtils.isUrl(form.url)) {
                 form.urlInputView.errorText = t('The URL is not valid.');
                 return false;
             }

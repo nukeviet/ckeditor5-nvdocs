@@ -8,17 +8,17 @@
  */
 
 /**
- * @module nviframe
+ * @module nvdocs
  */
 
-export { default as NVIframe } from './nvdocs.js';
-export { default as NVIframeInsert } from './nvdocsinsert.js';
-export { default as NVIframeInsertUI } from './nvdocsinsert/nviframeinsertui.js';
-export { default as IframeEditing } from './nvdocs/iframeediting.js';
-export { default as IframeUtils } from './nvdocsutils.js';
+export { default as NVDocs } from './nvdocs.js';
+export { default as NVDocsInsert } from './nvdocsinsert.js';
+export { default as NVDocsInsertUI } from './nvdocsinsert/nvdocsinsertui.js';
+export { default as NVDocsEditing } from './nvdocs/nvdocsediting.js';
+export { default as NVDocsUtils } from './nvdocsutils.js';
 
-export type { IframeConfig } from './nvdocsconfig.js';
-export type { default as InsertIframeCommand } from './nvdocs/insertiframecommand.js';
-export type { default as ReplaceIframeSourceCommand } from './nvdocs/replaceiframesourcecommand.js';
+export type { NVDocsConfig } from './nvdocsconfig.js';
+export type { default as InsertNVDocsCommand } from './nvdocs/insertnvdocscommand.js';
+export type { default as ReplaceNVDocsSourceCommand } from './nvdocs/replacenvdocssourcecommand.js';
 
 import './augmentation.js';

@@ -9,8 +9,8 @@
 
 import { Command, type Editor } from 'ckeditor5';
 import { toArray, logWarning } from 'ckeditor5';
-import IframeUtils from '../nvdocsutils.js';
-import { type IframeExecuteCommandOptions, getDefaultIframeExecuteCommandOptions } from './iframeexecuteoptions.js';
+import NVDocsUtils from '../nvdocsutils.js';
+import { type IframeExecuteCommandOptions, getDefaultIframeExecuteCommandOptions } from './nvdocsexecuteoptions.js';
 
 export default class InsertIframeCommand extends Command {
     declare public value: string | undefined;
@@ -26,8 +26,8 @@ export default class InsertIframeCommand extends Command {
      * @inheritDoc
      */
     public override refresh(): void {
-        const iframeUtils: IframeUtils = this.editor.plugins.get('IframeUtils');
-        this.isEnabled = iframeUtils.isIframeAllowed();
+        const nvDocsUtils: NVDocsUtils = this.editor.plugins.get('NVDocsUtils');
+        this.isEnabled = nvDocsUtils.isIframeAllowed();
     }
 
     /**
@@ -41,8 +41,8 @@ export default class InsertIframeCommand extends Command {
         } else {
             options = { ...getDefaultIframeExecuteCommandOptions(), ...options };
         }
-        const iframeUtils: IframeUtils = this.editor.plugins.get('IframeUtils');
-        if (!iframeUtils.isUrl(options.src)) {
+        const nvDocsUtils: NVDocsUtils = this.editor.plugins.get('NVDocsUtils');
+        if (!nvDocsUtils.isUrl(options.src)) {
             logWarning('Iframe.url is not a valid URL', options);
             return;
         }
@@ -50,6 +50,6 @@ export default class InsertIframeCommand extends Command {
         const selection = this.editor.model.document.selection;
         const selectionAttributes = Object.fromEntries(selection.getAttributes());
         const config = this.editor.config.get('iframe.attributes')!;
-        iframeUtils.insertIframe({ ...config, ...options, ...selectionAttributes });
+        nvDocsUtils.insertNVDocs({ ...config, ...options, ...selectionAttributes });
     }
 }

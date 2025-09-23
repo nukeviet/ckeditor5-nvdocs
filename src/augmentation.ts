@@ -1,5 +1,5 @@
 /**
- * NukeViet NVIframe for CKEditor5
+ * NukeViet NVDocs for CKEditor5
  * @version 5.x
  * @author VINADES.,JSC <contact@vinades.vn>
  * @copyright (C) 2009-2025 VINADES.,JSC. All rights reserved
@@ -8,14 +8,14 @@
  */
 
 import type {
-	NVIframe,
-	NVIframeInsert,
-	NVIframeInsertUI,
-	InsertIframeCommand,
-	ReplaceIframeSourceCommand,
-	IframeConfig,
-	IframeEditing,
-	IframeUtils
+	NVDocs,
+	NVDocsInsert,
+	NVDocsInsertUI,
+	InsertNVDocsCommand,
+	ReplaceNVDocsSourceCommand,
+	NVDocsConfig,
+	NVDocsEditing,
+	NVDocsUtils
 } from './index.js';
 
 declare module '@ckeditor/ckeditor5-core' {
@@ -23,21 +23,21 @@ declare module '@ckeditor/ckeditor5-core' {
 		/**
 		 *
 		 */
-		iframe?: IframeConfig;
+		nvdocs?: NVDocsConfig;
 	}
 
 	// Khai báo các plugin
 	interface PluginsMap {
-		[NVIframe.pluginName]: NVIframe;
-		[NVIframeInsert.pluginName]: NVIframeInsert;
-		[NVIframeInsertUI.pluginName]: NVIframeInsertUI;
-		[IframeUtils.pluginName]: IframeUtils;
-		[IframeEditing.pluginName]: IframeEditing;
+		[NVDocs.pluginName]: NVDocs;
+		[NVDocsInsert.pluginName]: NVDocsInsert;
+		[NVDocsInsertUI.pluginName]: NVDocsInsertUI;
+		[NVDocsUtils.pluginName]: NVDocsUtils;
+		[NVDocsEditing.pluginName]: NVDocsEditing;
 	}
 
 	// Khai báo các command
 	interface CommandsMap {
-		insertIframe: InsertIframeCommand;
-		replaceIframeSource: ReplaceIframeSourceCommand;
+		insertNVDocs: InsertNVDocsCommand;
+		replaceNVDocsSource: ReplaceNVDocsSourceCommand;
 	}
 }

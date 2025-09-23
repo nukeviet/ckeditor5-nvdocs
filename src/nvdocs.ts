@@ -1,5 +1,5 @@
 /**
- * NukeViet NVIframe for CKEditor5
+ * NukeViet NVDocs for CKEditor5
  * @version 5.x
  * @author VINADES.,JSC <contact@vinades.vn>
  * @copyright (C) 2009-2025 VINADES.,JSC. All rights reserved
@@ -8,23 +8,23 @@
  */
 
 import { Plugin } from 'ckeditor5';
-import IframeEditing from './nvdocs/iframeediting.js';
-import NVIframeInsertUI from './nvdocsinsert/nviframeinsertui.js';
+import NVDocsEditing from './nvdocs/nvdocsediting.js';
+import NVDocsInsertUI from './nvdocsinsert/nvdocsinsertui.js';
 
-import '../theme/iframe.css';
+import '../theme/nvdocs.css';
 
-export default class NVIframe extends Plugin {
+export default class NVDocs extends Plugin {
     /**
      * @inheritDoc
      */
     static get pluginName() {
-        return 'NVIframe' as const;
+        return 'NVDocs' as const;
     }
 
     /**
      * @inheritDoc
      */
     static get requires() {
-        return [IframeEditing, NVIframeInsertUI] as const;
+        return [NVDocsEditing, NVDocsInsertUI] as const;
     }
 }
