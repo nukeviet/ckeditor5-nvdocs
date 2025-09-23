@@ -5,9 +5,9 @@
 
 @import "@ckeditor/ckeditor5-ui/theme/mixins/_rwd.css";
 
-.ck.ck-docs-form {
+.ck.ck-nvdocs-form {
   @mixin ck-media-phone {
-    &.ck-docs-form {
+    &.ck-nvdocs-form {
       width: calc(100vw - var(--ck-spacing-large) - 32px);
       padding: var(--ck-spacing-large);
     }
@@ -18,7 +18,7 @@
 		margin-bottom: var(--ck-spacing-large);
 		width: 500px;
 
-    &.ck-docs-form__row_column {
+    &.ck-nvdocs-form__row_column {
       width: calc(500px + var(--ck-spacing-large));
 
       @mixin ck-media-phone {
@@ -26,7 +26,7 @@
       }
     }
 
-    &:not(.ck-docs-form__row_column) {
+    &:not(.ck-nvdocs-form__row_column) {
       margin-left: 0!important;
 		  margin-right: 0!important;
     }
@@ -51,7 +51,7 @@
 			}
 		}
 
-    &.ck-docs-form__row_column {
+    &.ck-nvdocs-form__row_column {
       margin-left: calc(-0.5 * var(--ck-spacing-large))!important;
       margin-right: calc(-0.5 * var(--ck-spacing-large))!important;
       flex-wrap: wrap;
@@ -201,14 +201,14 @@
 }
 
 @mixin ck-media-phone {
-  .ck.ck-responsive-form.ck-docs-form {
+  .ck.ck-responsive-form.ck-nvdocs-form {
     .ck-labeled-field-view {
       margin: 0;
     }
   }
 }
 
-.ck-docs-form__row_single {
+.ck-nvdocs-form__row_single {
 	>div {
 		flex: 0 0 100%;
 		max-width: 100%;
