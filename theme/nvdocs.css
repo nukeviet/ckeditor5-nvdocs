@@ -1,12 +1,12 @@
 .ck-content {
-  .ck-widget.nvck-iframe {
+  .ck-widget.nvck-docs {
     user-select: none;
     position: relative;
     width: 100%;
     margin-bottom: .5rem;
 
-    >.nvck-iframe-inner {
-      >.nvck-iframe-element {
+    >.nvck-docs-inner {
+      >.nvck-docs-element {
         border: none;
         z-index: -1;
         margin: 0 auto;
@@ -25,17 +25,17 @@
       }
     }
 
-    &.nvck-iframe-responsive {
+    &.nvck-docs-responsive {
       height: 0;
 
-      >.nvck-iframe-inner {
+      >.nvck-docs-inner {
         position: absolute;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
 
-        >.nvck-iframe-element {
+        >.nvck-docs-element {
           width: 100%;
           height: 100%;
         }

@@ -70,7 +70,7 @@ export default class NVDocsInsertUI extends Plugin {
     private _createDialogButton<T extends typeof ButtonView | typeof MenuBarMenuListItemButtonView>(ButtonClass: T): InstanceType<T> {
         const editor = this.editor;
         const buttonView = new ButtonClass(editor.locale) as InstanceType<T>;
-        const command = editor.commands.get('insertIframe')!;
+        const command = editor.commands.get('insertNVDocs')!;
         const dialogPlugin = this.editor.plugins.get('Dialog');
 
         buttonView.icon = nvdocsIcon;
@@ -158,9 +158,9 @@ export default class NVDocsInsertUI extends Plugin {
         const editor = this.editor;
         const dialog = editor.plugins.get('Dialog');
 
-        // Nếu form hợp lệ thì chèn iframe hoặc cập nhật iframe
+        // Nếu form hợp lệ thì chèn nvdocs hoặc cập nhật nvdocs
         if (this._formView!.isValid()) {
-            editor.execute('insertIframe', {
+            editor.execute('insertNVDocs', {
                 src: this._formView!.url,
                 width: this._formView!.width,
                 height: this._formView!.height,

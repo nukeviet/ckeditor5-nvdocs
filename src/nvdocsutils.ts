@@ -51,7 +51,7 @@ export default class NVDocsUtils extends Plugin {
 
         // Xóa các attr nếu không được phép trong schema
         for (const attributeName in attributes) {
-            if (!model.schema.checkAttribute('iframe', attributeName)) {
+            if (!model.schema.checkAttribute('nvdocs', attributeName)) {
                 delete attributes[attributeName];
             }
         }
@@ -60,15 +60,15 @@ export default class NVDocsUtils extends Plugin {
 
         // Chèn model vào
         return model.change(writer => {
-            const iframeElement = writer.createElement('iframe', attributes);
+            const nvdocsElement = writer.createElement('nvdocs', attributes);
 
-            model.insertObject(iframeElement, selectable, null, {
+            model.insertObject(nvdocsElement, selectable, null, {
                 setSelection: 'on',
                 findOptimalPosition: !selectable ? 'auto' : undefined
             });
 
-            if (iframeElement.parent) {
-                return iframeElement;
+            if (nvdocsElement.parent) {
+                return nvdocsElement;
             }
 
             return null;
@@ -78,8 +78,8 @@ export default class NVDocsUtils extends Plugin {
     /**
      *
      */
-    public toIframeWidget(viewElement: ViewElement, writer: ViewDowncastWriter, label: string): ViewElement {
-        writer.setCustomProperty('iframe', true, viewElement);
+    public toNVDocsWidget(viewElement: ViewElement, writer: ViewDowncastWriter, label: string): ViewElement {
+        writer.setCustomProperty('nvdocs', true, viewElement);
 
         const labelCreator = () => {
             //const imgElement = this.findViewImgElement(viewElement)!;
@@ -104,55 +104,55 @@ export default class NVDocsUtils extends Plugin {
      *
      * @internal
      */
-    public isIframeAllowed(): boolean {
+    public isNVDocsAllowed(): boolean {
         const model = this.editor.model;
         const selection = model.document.selection;
 
-        return isIframeAllowedInParent(this.editor, selection) && isNotInsideIframe(selection);
+        return isNVDocsAllowedInParent(this.editor, selection) && isNotInsideNVDocs(selection);
     }
 
     /**
-     * Tìm thẻ iframe trong cấu trúc html iframe
+     * Tìm thẻ hiển thị chính trong cấu trúc html NVDocs
      */
-    public findViewIframeElement(divView: ViewElement): ViewElement | undefined {
-        if (this.isIframeView(divView)) {
+    public findViewPrimaryNVDocsElement(divView: ViewElement): ViewElement | undefined {
+        if (this.isPrimaryView(divView)) {
             return divView;
         }
 
         const editingView = this.editor.editing.view;
 
         for (const { item } of editingView.createRangeIn(divView)) {
-            if (this.isIframeView(item as ViewElement)) {
+            if (this.isPrimaryView(item as ViewElement)) {
                 return item as ViewElement;
             }
         }
     }
 
-    public findViewOuterIframeElement(divView: ViewElement): ViewElement | undefined {
-        if (divView.is('element', 'div') && divView.hasClass('nvck-iframe')) {
+    public findViewOuterNVDocsElement(divView: ViewElement): ViewElement | undefined {
+        if (divView.is('element', 'div') && divView.hasClass('nvck-docs')) {
             return divView;
         }
     }
 
-    public findViewInnerIframeElement(divView: ViewElement): ViewElement | undefined {
+    public findViewInnerNVDocsElement(divView: ViewElement): ViewElement | undefined {
         const editingView = this.editor.editing.view;
 
         for (const { item } of editingView.createRangeIn(divView)) {
-            if (!!item && item.is('element', 'div') && item.hasClass('nvck-iframe-inner')) {
+            if (!!item && item.is('element', 'div') && item.hasClass('nvck-docs-inner')) {
                 return item as ViewElement;
             }
         }
     }
 
     /**
-     * Xác định đối tượng ViewElement có phải là iframe không
+     * Xác định đối tượng ViewElement có phải là thẻ view chính show ra để nhìn không
      */
-    public isIframeView(element?: ViewElement | null): boolean {
-        return !!element && element.is('element', 'iframe');
+    public isPrimaryView(element?: ViewElement | null): boolean {
+        return !!element && element.is('element', 'div') && element.hasClass('nvck-docs-element');
     }
 
-    public isBlockIframeView(element?: ViewElement | null): boolean {
-        return !!element && element.is('element', 'div') && element.hasClass('nvck-iframe');
+    public isBlockNVDocsView(element?: ViewElement | null): boolean {
+        return !!element && element.is('element', 'div') && element.hasClass('nvck-docs');
     }
 
     /**
@@ -171,20 +171,21 @@ export default class NVDocsUtils extends Plugin {
     }
 
     /**
-     * Kiểm tra xem phần tử view có nằm trong iframe hay không
+     * Kiểm tra xem phần tử view có nằm trong nvdocs hay không
+     *
      * @param viewElement Phần tử view cần kiểm tra
      * @returns
      */
-    public isViewInsideIframe(viewElement: ViewElement): boolean {
-        // Cha cấp 1 (phải là div.nvck-iframe-inner)
+    public isViewInsideNVDocs(viewElement: ViewElement): boolean {
+        // Cha cấp 1 (phải là div.nvck-docs-inner)
         const parent1 = viewElement.parent as ViewElement | null;
-        if (!parent1 || !parent1.is('element', 'div') || !parent1.hasClass('nvck-iframe-inner')) {
+        if (!parent1 || !parent1.is('element', 'div') || !parent1.hasClass('nvck-docs-inner')) {
             return false;
         }
 
-        // Cha cấp 2 (phải là div.nvck-iframe)
+        // Cha cấp 2 (phải là div.nvck-docs)
         const parent2 = parent1.parent as ViewElement | null;
-        if (!parent2 || !parent2.is('element', 'div') || !parent2.hasClass('nvck-iframe')) {
+        if (!parent2 || !parent2.is('element', 'div') || !parent2.hasClass('nvck-docs')) {
             return false;
         }
 
@@ -193,12 +194,12 @@ export default class NVDocsUtils extends Plugin {
 }
 
 /**
- * Kiểm tra xem iframe có chèn được trong đối tượng cha đang chọn hay không
+ * Kiểm tra xem nvdocs có chèn được trong đối tượng cha đang chọn hay không
  */
-function isIframeAllowedInParent(editor: Editor, selection: ModelSelection | ModelDocumentSelection): boolean {
-    const parent = getInsertIframeParent(selection, editor.model);
+function isNVDocsAllowedInParent(editor: Editor, selection: ModelSelection | ModelDocumentSelection): boolean {
+    const parent = getInsertNVdocsParent(selection, editor.model);
 
-    if (editor.model.schema.checkChild(parent as ModelElement, 'iframe')) {
+    if (editor.model.schema.checkChild(parent as ModelElement, 'nvdocs')) {
         return true;
     }
 
@@ -206,16 +207,16 @@ function isIframeAllowedInParent(editor: Editor, selection: ModelSelection | Mod
 }
 
 /**
- * Checks if selection is not placed inside an iframe (e.g. its caption).
+ * Checks if selection is not placed inside an nvdocs (e.g. its caption).
  */
-function isNotInsideIframe(selection: ModelDocumentSelection): boolean {
-    return [...selection.focus!.getAncestors()].every(ancestor => !ancestor.is('element', 'iframe'));
+function isNotInsideNVDocs(selection: ModelDocumentSelection): boolean {
+    return [...selection.focus!.getAncestors()].every(ancestor => !ancestor.is('element', 'nvdocs'));
 }
 
 /**
  * Returns a node that will be used to insert image with `model.insertContent`.
  */
-function getInsertIframeParent(selection: ModelSelection | ModelDocumentSelection, model: Model): ModelElement | ModelDocumentFragment {
+function getInsertNVdocsParent(selection: ModelSelection | ModelDocumentSelection, model: Model): ModelElement | ModelDocumentFragment {
     const insertionRange = findOptimalInsertionRange(selection, model);
     const parent = insertionRange.start.parent;
 

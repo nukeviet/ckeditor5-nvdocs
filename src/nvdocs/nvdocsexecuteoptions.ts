@@ -1,16 +1,16 @@
 /**
- * NukeViet NVIframe for CKEditor5
- * @version 4.x
+ * NukeViet NVDocs for CKEditor5
+ * @version 5.x
  * @author VINADES.,JSC <contact@vinades.vn>
- * @copyright (C) 2009-2024 VINADES.,JSC. All rights reserved
+ * @copyright (C) 2009-2025 VINADES.,JSC. All rights reserved
  * @license GNU/GPL version 2 or any later version
  * @see https://github.com/nukeviet The NukeViet CMS GitHub project
  */
 
 /**
- * Options khi thực thi lệnh chèn iframe
+ * Options khi thực thi lệnh chèn nvdocs
  */
-export type IframeExecuteCommandOptions = {
+export type NVDocsExecuteCommandOptions = {
     src: string;
     width?: number | null;
     height?: number | null;
@@ -19,9 +19,9 @@ export type IframeExecuteCommandOptions = {
 };
 
 /**
- * @returns Các giá trị mặc định khi thực thi lệnh chèn iframe
+ * @returns Các giá trị mặc định khi thực thi lệnh chèn nvdocs
  */
-export function getDefaultIframeExecuteCommandOptions(): IframeExecuteCommandOptions {
+export function getDefaultNVDocsExecuteCommandOptions(): NVDocsExecuteCommandOptions {
     return {
         src: '',
         width: 560,
