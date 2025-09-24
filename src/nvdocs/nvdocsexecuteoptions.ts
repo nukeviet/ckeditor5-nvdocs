@@ -16,6 +16,7 @@ export type NVDocsExecuteCommandOptions = {
     height?: number | null;
     type?: 'auto' | 'fixed' | null;
     ratio?: [number, number] | null;
+    provider?: 'microsoft' | 'google' | null;
 };
 
 /**
@@ -24,9 +25,10 @@ export type NVDocsExecuteCommandOptions = {
 export function getDefaultNVDocsExecuteCommandOptions(): NVDocsExecuteCommandOptions {
     return {
         src: '',
-        width: 560,
-        height: 315,
+        width: 710,
+        height: 920,
         type: 'auto',
-        ratio: [16, 9]
+        ratio: [1, 2],
+        provider: 'microsoft'
     };
 }

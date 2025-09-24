@@ -24,6 +24,7 @@ export default class ReplaceNVDocsSourceCommand extends Command {
     declare public width: number | null;
     declare public height: number | null;
     declare public ratio: [number, number] | null;
+    declare public provider: 'google' | 'microsoft';
 
     constructor(editor: Editor) {
         super(editor);
@@ -45,6 +46,7 @@ export default class ReplaceNVDocsSourceCommand extends Command {
         this.width = this.isEnabled ? element.getAttribute('width') as number : null;
         this.height = this.isEnabled ? element.getAttribute('height') as number : null;
         this.ratio = this.isEnabled ? element.getAttribute('ratio') as [number, number] : null;
+        this.provider = this.isEnabled ? element.getAttribute('provider') as 'google' | 'microsoft' : 'microsoft';
     }
 
     /**

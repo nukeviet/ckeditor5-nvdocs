@@ -49,7 +49,7 @@ export default class InsertNVDocsCommand extends Command {
 
         const selection = this.editor.model.document.selection;
         const selectionAttributes = Object.fromEntries(selection.getAttributes());
-        const config = this.editor.config.get('nvdocs.attributes')!;
+        const config = this.editor.config.get('iframe.attributes')! || {};
         nvDocsUtils.insertNVDocs({ ...config, ...options, ...selectionAttributes });
     }
 }

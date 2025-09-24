@@ -11,25 +11,13 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 
-msgctxt "Insert iframe"
-msgid "Insert iframe"
-msgstr "Insert iframe"
-
 msgctxt "The URL must not be empty."
 msgid "The URL must not be empty."
 msgstr "The URL must not be empty."
 
-msgctxt "Paste the iframe URL in the input."
-msgid "Paste the iframe URL in the input."
-msgstr "Paste the iframe URL in the input."
-
 msgctxt "Tip: Paste the URL into the content to embed faster."
 msgid "Tip: Paste the URL into the content to embed faster."
 msgstr "Tip: Paste the URL into the content to embed faster."
-
-msgctxt "Iframe URL"
-msgid "Iframe URL"
-msgstr "Iframe URL"
 
 msgctxt "Size"
 msgid "Size"
@@ -75,14 +63,42 @@ msgctxt "Ratio must follow the x:y format"
 msgid "Ratio must follow the x:y format"
 msgstr "Ratio must follow the x:y format"
 
-msgctxt "Update iframe"
-msgid "Update iframe"
-msgstr "Update iframe"
-
-msgctxt "Iframe widget"
-msgid "Iframe widget"
-msgstr "Iframe widget"
-
 msgctxt "The URL is not valid."
 msgid "The URL is not valid."
 msgstr "The URL is not valid."
+
+msgctxt "NVDocs widget"
+msgid "NVDocs widget"
+msgstr "NVDocs widget"
+
+msgctxt "Update document"
+msgid "Update document"
+msgstr "Update document"
+
+msgctxt "Insert document"
+msgid "Insert document"
+msgstr "Insert document"
+
+msgctxt "Google Docs"
+msgid "Google Docs"
+msgstr "Google Docs"
+
+msgctxt "Microsoft Office"
+msgid "Microsoft Office"
+msgstr "Microsoft Office"
+
+msgctxt "Paste the document URL in the input."
+msgid "Paste the document URL in the input."
+msgstr "Paste the document URL in the input."
+
+msgctxt "Document URL"
+msgid "Document URL"
+msgstr "Document URL"
+
+msgctxt "Platform provider"
+msgid "Platform provider"
+msgstr "Platform provider"
+
+msgctxt "Browse"
+msgid "Browse"
+msgstr "Browse"

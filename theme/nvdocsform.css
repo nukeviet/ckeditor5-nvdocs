@@ -56,7 +56,15 @@
       margin-right: calc(-0.5 * var(--ck-spacing-large))!important;
       flex-wrap: wrap;
 
-      >div {
+      .ck-nvdocs-button {
+        display: flex;
+        margin-inline-start: 0;
+        border-color: var(--ck-color-input-border);
+        justify-content: center;
+      }
+
+      >div,
+      >.ck-nvdocs-button {
         padding-left: calc(var(--ck-spacing-large) * 0.5);
         padding-right: calc(var(--ck-spacing-large) * 0.5);
         flex: 0 0 100%;

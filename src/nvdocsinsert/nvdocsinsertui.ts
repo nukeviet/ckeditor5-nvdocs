@@ -117,7 +117,8 @@ export default class NVDocsInsertUI extends Plugin {
         const isNVDocsSelected = command.isEnabled;
 
         if (!this._formView) {
-            this._formView = new (CssTransitionDisablerMixin(NVDocsFormView))(getFormValidators(editor), editor.locale);
+            const browseUrl = editor.config.get('nvdocs.browseUrl');
+            this._formView = new (CssTransitionDisablerMixin(NVDocsFormView))(getFormValidators(editor), editor.locale, browseUrl);
             this._formView.on('submit', () => this._handleSubmitForm());
         }
 
@@ -128,10 +129,11 @@ export default class NVDocsInsertUI extends Plugin {
             isModal: true,
             onShow: () => {
                 this._formView!.widthType = command.isEnabled ? (command.type || 'auto') : 'auto';
-                this._formView!.width = command.isEnabled ? (command.width || 560) : 560;
-                this._formView!.height = command.isEnabled ? (command.height || 315) : 315;
-                this._formView!.ratio = command.isEnabled ? (command.ratio || [16, 9]) : [16, 9];
+                this._formView!.width = command.isEnabled ? (command.width || 710) : 710;
+                this._formView!.height = command.isEnabled ? (command.height || 920) : 920;
+                this._formView!.ratio = command.isEnabled ? (command.ratio || [1, 2]) : [1, 2];
                 this._formView!.url = command.isEnabled ? (command.value || '') : '';
+                this._formView!.provider = command.isEnabled ? (command.provider || 'google') : 'google';
                 this._formView!.resetFormStatus();
                 this._formView!.urlInputView.fieldView.select();
             },
@@ -165,7 +167,8 @@ export default class NVDocsInsertUI extends Plugin {
                 width: this._formView!.width,
                 height: this._formView!.height,
                 type: this._formView!.widthType,
-                ratio: this._formView!.ratio
+                ratio: this._formView!.ratio,
+                provider: this._formView!.provider
             });
 
             dialog.hide();

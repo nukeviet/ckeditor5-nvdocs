@@ -11,7 +11,7 @@ import {
 	addListToDropdown,
 	Collection,
 	ListDropdownItemDefinition,
-	type ButtonView,
+	ButtonView,
 	type DropdownView,
 	type InputTextView,
 	type InputNumberView,
@@ -69,6 +69,11 @@ export class NVDocsFormView extends View {
 	declare public nvdocsTypeWidthValue: 'auto' | 'fixed';
 
 	/**
+	 * Nhà cung cấp dịch vụ xem tài liệu: Google Docs hay Microsoft Office
+	 */
+	declare public nvdocsProviderValue: 'google' | 'microsoft';
+
+	/**
 	 * The URL input view.
 	 */
 	public urlInputView: LabeledFieldView<InputTextView>;
@@ -92,6 +97,16 @@ export class NVDocsFormView extends View {
 	 * The type width select view.
 	 */
 	public typeWidthSelectView: LabeledFieldView<DropdownView>;
+
+	/**
+	 * Ô nhà cung cấp dịch vụ xem tài liệu
+	 */
+	public providerSelectView: LabeledFieldView<DropdownView>;
+
+	/**
+	 * Ô duyệt máy chủ nếu có
+	 */
+	public browserButtonView?: ButtonView;
 
 	/**
 	 * Mảng các hàm kiểm tra tính hợp lệ của form
@@ -124,33 +139,50 @@ export class NVDocsFormView extends View {
 	private _ratioInputViewInfoDefault?: string;
 
 	/**
+	 * URL nút duyệt máy chủ
+	 */
+	private browseUrl?: string;
+
+	/**
 	 * @param validators Array of form validators.
 	 * @param locale
 	 */
-	constructor(validators: Array<(v: NVDocsFormView) => boolean>, locale: Locale) {
+	constructor(validators: Array<(v: NVDocsFormView) => boolean>, locale: Locale, browseUrl?: string) {
 		super(locale);
 
 		this.focusTracker = new FocusTracker();
 		this.keystrokes = new KeystrokeHandler();
 
 		this.set('nvdocsURLInputValue', '');
-		this.set('nvdocsHeightInputValue', 315);
-		this.set('nvdocsWidthInputValue', 560);
-		this.set('nvdocsRatioInputValue', [16, 9]);
+		this.set('nvdocsHeightInputValue', 920);
+		this.set('nvdocsWidthInputValue', 710);
+		this.set('nvdocsRatioInputValue', [1, 2]);
 		this.set('nvdocsTypeWidthValue', 'auto');
+		this.set('nvdocsProviderValue', 'microsoft');
+
+		this.browseUrl = browseUrl;
 
 		this.urlInputView = this._createUrlInput();
+		this.providerSelectView = this._createProviderSelect();
 		this.widthInputView = this._createWidthInput();
 		this.heightInputView = this._createHeightInput();
 		this.ratioInputView = this._createRatioInput();
 		this.typeWidthSelectView = this._createTypeWidthSelect();
 
+		if (!!this.browseUrl) {
+			this.browserButtonView = this._createBrowserButton();
+		}
+
 		this._validators = validators;
 
 		// Dòng nhập URL
 		const rowInput = new FormRowView(locale);
+		rowInput.children.add(this.providerSelectView);
 		rowInput.children.add(this.urlInputView);
-		rowInput.class.push('ck-nvdocs-form__row_single');
+		if (this.browserButtonView) {
+			rowInput.children.add(this.browserButtonView);
+		}
+		rowInput.class.push('ck-nvdocs-form__row_column');
 
 		// Dòng chọn kích thước, nhập chiều rộng, chiều cao, tỷ lệ
 		const rowType = new FormRowView(locale);
@@ -300,6 +332,23 @@ export class NVDocsFormView extends View {
 	}
 
 	/**
+	 * @param type 'google' or 'microsoft'
+	 */
+	public set provider(provider: 'google' | 'microsoft') {
+		const t = this.locale!.t;
+		this.set('nvdocsProviderValue', provider);
+		this.providerSelectView.fieldView.buttonView.set({ label: provider === 'google' ? t('Google Docs') : t('Microsoft Office') });
+		this._changeTypeWidth();
+	}
+
+	/**
+	 * Get kiểu chiều rộng: 'google' or 'microsoft'
+	 */
+	public get provider(): 'google' | 'microsoft' {
+		return this.nvdocsProviderValue;
+	}
+
+	/**
 	 * Kiểm tra tính hợp lệ của form.
 	 *
 	 * @returns true|false
@@ -373,6 +422,11 @@ export class NVDocsFormView extends View {
 
 		labeledInput.label = t('Document URL');
 		labeledInput.infoText = this._urlInputViewInfoDefault;
+		labeledInput.extendTemplate({
+			attributes: {
+				class: [!!this.browseUrl ? 'c6' : 'c8']
+    		}
+		});
 
 		inputField.inputMode = 'url';
 		inputField.on('input', () => {
@@ -434,20 +488,20 @@ export class NVDocsFormView extends View {
 			// Trường hợp đổi sang tự động mà chiều rộng hoặc chiều cao lỗi thì đặt nó làm mặc định
 			if (this.nvdocsTypeWidthValue === 'auto') {
 				if (this.width <= 0 || isNaN(this.width)) {
-					this.widthInputView.fieldView.set('value', '560');
-					this.widthInputView.fieldView.element!.value = '560';
+					this.widthInputView.fieldView.set('value', '710');
+					this.widthInputView.fieldView.element!.value = '710';
 					this.widthInputView.fieldView.isEmpty = false;
 				}
 				if (this.height <= 0 || isNaN(this.height)) {
-					this.heightInputView.fieldView.set('value', '315');
-					this.heightInputView.fieldView.element!.value = '315';
+					this.heightInputView.fieldView.set('value', '920');
+					this.heightInputView.fieldView.element!.value = '920';
 					this.heightInputView.fieldView.isEmpty = false;
 				}
 			} else {
 				// Trường hợp đổi sang cố định mà tỷ lệ lỗi thì đặt nó làm mặc định
 				if (this.ratio === null) {
-					this.ratioInputView.fieldView.set('value', '16:9');
-					this.ratioInputView.fieldView.element!.value = '16:9';
+					this.ratioInputView.fieldView.set('value', '1:2');
+					this.ratioInputView.fieldView.element!.value = '1:2';
 					this.ratioInputView.fieldView.isEmpty = false;
 				}
 			}
@@ -463,6 +517,72 @@ export class NVDocsFormView extends View {
 		});
 
 		labeledInput.label = t('Size');
+		labeledInput.isEmpty = false;
+		labeledInput.extendTemplate({
+			attributes: {
+				class: ['c4']
+    		}
+		});
+
+		return labeledInput;
+	}
+
+	/**
+	 * Tạo ô chọn nhà cung cấp dịch vụ Google hay Microsoft
+	 *
+	 * @returns LabeledFieldView<DropdownView>
+	 */
+	private _createProviderSelect(): LabeledFieldView<DropdownView> {
+		const t = this.locale!.t;
+		const labeledInput = new LabeledFieldView(this.locale, (labeledFieldView, viewUid, statusUid) => {
+			const dropdown = createLabeledDropdown(labeledFieldView, viewUid, statusUid);
+			const button = dropdown.buttonView;
+
+			/**
+			 * Xử lý lỗi của createLabeledDropdown, khi for=viewUid nó đưa vào 1 thẻ div.
+			 * Render trước để lấy element là cái nút sau đó đặt id nút đó là viewUid (for của cái label)
+			 * Đổi lại id của dropdown thành viewUid_outer để tránh trùng id
+			 */
+			dropdown.set({
+				id: `${viewUid}_outer`
+			});
+			dropdown.render();
+			button.element!.setAttribute('id', viewUid);
+
+			return dropdown;
+		});
+		const dropdown = labeledInput.fieldView;
+
+		// Thêm các lựa chọn cho dropdown
+		const items = new Collection<ListDropdownItemDefinition>();
+		items.add({
+			type: 'button',
+			model: new UIModel({
+				withText: true,
+				label: t('Google Docs'),
+			})
+		});
+		items.add({
+			type: 'button',
+			model: new UIModel({
+				withText: true,
+				label: t('Microsoft Office'),
+			})
+		});
+		dropdown.on('execute', (evt) => {
+			const buttonView = evt.source as ButtonView;
+			dropdown.buttonView.set({ label: buttonView.label });
+			this.set('nvdocsProviderValue', buttonView.label === t('Google Docs') ? 'google' : 'microsoft');
+		});
+		addListToDropdown(dropdown, items);
+
+		// Text cho nút dropdown
+		dropdown.buttonView.set({
+			label: t('Google Docs'),
+			withText: true,
+		});
+
+		labeledInput.label = t('Platform provider');
 		labeledInput.isEmpty = false;
 		labeledInput.extendTemplate({
 			attributes: {
@@ -546,6 +666,29 @@ export class NVDocsFormView extends View {
 		});
 
 		return labeledInput;
+	}
+
+	/**
+	 * Tạo nút duyệt máy chủ
+	 *
+	 * @returns ButtonView
+	 */
+	private _createBrowserButton(): ButtonView {
+		const t = this.locale!.t;
+		const button = new ButtonView(this.locale);
+
+		button.withText = true;
+		button.label = t('Browse');
+		button.extendTemplate({
+			attributes: {
+				class: ['c2', 'ck-nvdocs-button']
+    		}
+		});
+		button.on('execute', () => {
+			console.log('Browse server');
+		});
+
+		return button;
 	}
 
 	/**

@@ -11,25 +11,13 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 
-msgctxt "Insert iframe"
-msgid "Insert iframe"
-msgstr "Chèn iframe"
-
 msgctxt "The URL must not be empty."
 msgid "The URL must not be empty."
 msgstr "URL không được để trống."
 
-msgctxt "Paste the iframe URL in the input."
-msgid "Paste the iframe URL in the input."
-msgstr "Dán URL iframe vào ô nhập."
-
 msgctxt "Tip: Paste the URL into the content to embed faster."
 msgid "Tip: Paste the URL into the content to embed faster."
 msgstr "Mẹo: Dán URL vào ô nhập để thao tác nhanh hơn."
-
-msgctxt "Iframe URL"
-msgid "Iframe URL"
-msgstr "URL iframe"
 
 msgctxt "Size"
 msgid "Size"
@@ -75,14 +63,42 @@ msgctxt "Ratio must follow the x:y format"
 msgid "Ratio must follow the x:y format"
 msgstr "Tỷ lệ phải theo định dạng x:y"
 
-msgctxt "Update iframe"
-msgid "Update iframe"
-msgstr "Cập nhật iframe"
-
-msgctxt "Iframe widget"
-msgid "Iframe widget"
-msgstr "Widget iframe"
-
 msgctxt "The URL is not valid."
 msgid "The URL is not valid."
 msgstr "URL không hợp lệ."
+
+msgctxt "NVDocs widget"
+msgid "NVDocs widget"
+msgstr "Widget NVDocs"
+
+msgctxt "Update document"
+msgid "Update document"
+msgstr "Cập nhật tài liệu xem trực tuyến"
+
+msgctxt "Insert document"
+msgid "Insert document"
+msgstr "Chèn tài liệu xem trực tuyến"
+
+msgctxt "Google Docs"
+msgid "Google Docs"
+msgstr "Google Docs"
+
+msgctxt "Microsoft Office"
+msgid "Microsoft Office"
+msgstr "Microsoft Office"
+
+msgctxt "Paste the document URL in the input."
+msgid "Paste the document URL in the input."
+msgstr "Dán URL tài liệu vào ô nhập."
+
+msgctxt "Document URL"
+msgid "Document URL"
+msgstr "URL tài liệu"
+
+msgctxt "Platform provider"
+msgid "Platform provider"
+msgstr "Trình xem"
+
+msgctxt "Browse"
+msgid "Browse"
+msgstr "Duyệt"

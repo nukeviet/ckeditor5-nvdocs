@@ -11,25 +11,13 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n % 10 == 1 && n % 100 != 11 ? 0 : n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 10 || n % 100 >= 20) ? 1 : 2);\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 
-msgctxt "Insert iframe"
-msgid "Insert iframe"
-msgstr "Вставить iframe"
-
 msgctxt "The URL must not be empty."
 msgid "The URL must not be empty."
 msgstr "URL не должен быть пустым."
 
-msgctxt "Paste the iframe URL in the input."
-msgid "Paste the iframe URL in the input."
-msgstr "Вставьте URL iframe в поле ввода."
-
 msgctxt "Tip: Paste the URL into the content to embed faster."
 msgid "Tip: Paste the URL into the content to embed faster."
 msgstr "Совет: Вставьте URL в содержимое, чтобы быстрее встроить."
-
-msgctxt "Iframe URL"
-msgid "Iframe URL"
-msgstr "URL iframe"
 
 msgctxt "Size"
 msgid "Size"
@@ -75,14 +63,42 @@ msgctxt "Ratio must follow the x:y format"
 msgid "Ratio must follow the x:y format"
 msgstr "Соотношение должно соответствовать формату x:y"
 
-msgctxt "Update iframe"
-msgid "Update iframe"
-msgstr "Обновить iframe"
-
-msgctxt "Iframe widget"
-msgid "Iframe widget"
-msgstr "Виджет iframe"
-
 msgctxt "The URL is not valid."
 msgid "The URL is not valid."
 msgstr "URL недействителен."
+
+msgctxt "NVDocs widget"
+msgid "NVDocs widget"
+msgstr "NVDocs widget"
+
+msgctxt "Update document"
+msgid "Update document"
+msgstr "Обновить документ"
+
+msgctxt "Insert document"
+msgid "Insert document"
+msgstr "Вставить документ"
+
+msgctxt "Google Docs"
+msgid "Google Docs"
+msgstr "Google Docs"
+
+msgctxt "Microsoft Office"
+msgid "Microsoft Office"
+msgstr "Microsoft Office"
+
+msgctxt "Paste the document URL in the input."
+msgid "Paste the document URL in the input."
+msgstr "Вставьте URL документа в поле ввода."
+
+msgctxt "Document URL"
+msgid "Document URL"
+msgstr "URL документа"
+
+msgctxt "Platform provider"
+msgid "Platform provider"
+msgstr "Поставщик платформы"
+
+msgctxt "Browse"
+msgid "Browse"
+msgstr "Обзор"

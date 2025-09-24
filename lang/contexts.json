@@ -1,10 +1,6 @@
 {
-	"Insert iframe": "Insert iframe",
-	"Update iframe": "Update iframe",
 	"The URL must not be empty.": "The URL must not be empty.",
-	"Paste the iframe URL in the input.": "Paste the iframe URL in the input.",
 	"Tip: Paste the URL into the content to embed faster.": "Tip: Paste the URL into the content to embed faster.",
-	"Iframe URL": "Iframe URL",
 	"Size": "Size",
 	"Width": "Width",
 	"Height": "Height",
@@ -16,6 +12,14 @@
 	"Width must be greater than 0": "Width must be greater than 0",
 	"Height must be greater than 0": "Height must be greater than 0",
 	"Ratio must follow the x:y format": "Ratio must follow the x:y format",
-	"Iframe widget": "Iframe widget",
-	"The URL is not valid.": "The URL is not valid."
+	"The URL is not valid.": "The URL is not valid.",
+	"NVDocs widget": "NVDocs widget",
+	"Update document": "Update document",
+	"Insert document": "Insert document",
+	"Google Docs": "Google Docs",
+	"Microsoft Office": "Microsoft Office",
+	"Paste the document URL in the input.": "Paste the document URL in the input.",
+	"Document URL": "Document URL",
+	"Platform provider": "Platform provider",
+	"Browse": "Browse"
 }

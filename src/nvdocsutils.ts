@@ -148,7 +148,7 @@ export default class NVDocsUtils extends Plugin {
      * Xác định đối tượng ViewElement có phải là thẻ view chính show ra để nhìn không
      */
     public isPrimaryView(element?: ViewElement | null): boolean {
-        return !!element && element.is('element', 'div') && element.hasClass('nvck-docs-element');
+        return !!element && element.is('element', 'iframe') && element.hasClass('nvck-docs-element');
     }
 
     public isBlockNVDocsView(element?: ViewElement | null): boolean {

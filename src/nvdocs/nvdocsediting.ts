@@ -14,7 +14,7 @@ import InsertNVDocsCommand from './insertnvdocscommand.js';
 import ReplaceNVDocsSourceCommand from './replacenvdocssourcecommand.js';
 import NVDocsUtils from '../nvdocsutils.js';
 import { createNVDocsViewElement } from './utils.js';
-import { downcastNVDocsAttribute, upcastNVDocsDivStructure, upcastPlainHtmlCode } from './converters.js';
+import { downcastNVDocsAttribute, upcastNVDocsDivStructure, upcastV4NVDocviewer } from './converters.js';
 
 export default class NVDocsEditing extends Plugin {
 	/**
@@ -36,7 +36,7 @@ export default class NVDocsEditing extends Plugin {
 			allowAttributes: [
 				'allow', 'allowfullscreen', 'height',
 				'referrerpolicy', 'sandbox', 'src', 'srcdoc',
-				'width', 'type', 'ratio'
+				'width', 'type', 'ratio', 'provider'
 			]
 		});
 
@@ -75,12 +75,13 @@ export default class NVDocsEditing extends Plugin {
 		conversion.for('downcast').add(downcastNVDocsAttribute(nvDocsUtils, [
 			'src', 'width', 'height', 'allow',
 			'allowfullscreen', 'referrerpolicy',
-			'sandbox', 'srcdoc', 'type', 'ratio'
+			'sandbox', 'srcdoc', 'type', 'ratio',
+			'provider'
 		]));
 
 		// div.nvck-docs => model (sau đó để hiển thị ra lại dùng editingDowncast + downcast)
 		conversion.for('upcast')
 			.add(upcastNVDocsDivStructure(nvDocsUtils, editor)) // Upcast cấu trúc div.nvck-docs
-			.add(upcastPlainHtmlCode(nvDocsUtils, editor)); // Upcast thẻ html đơn thuần về cấu trúc div.nvck-docs
+			.add(upcastV4NVDocviewer(nvDocsUtils, editor)); // Upcast cấu trúc nv-docviewer cũ của ckeditor4 thành model nvdocs ckeditor5
 	}
 }

@@ -29,7 +29,8 @@ export interface NVDocsConfig {
     /*
      *
      */
-    browser_url?: string;
+    browseUrl?: string;
+    uploadUrl?: string;
 }
 
 // export interface NVDocsAttributes extends Record<string, unknown> {
