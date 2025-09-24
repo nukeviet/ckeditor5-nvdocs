@@ -1,6 +1,6 @@
 {
   "name": "@nukeviet/ckeditor5-nvdocs",
-  "version": "46.0.2",
+  "version": "46.1.1",
   "description": "Online Document Viewer Plugin for CKEditor 5 integrated with NukeViet.",
   "keywords": [
     "nukeviet",
@@ -16,7 +16,7 @@
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
   "peerDependencies": {
-    "ckeditor5": "46.0.2"
+    "ckeditor5": "46.1.1"
   },
   "exports": {
     ".": {
@@ -32,8 +32,8 @@
     "ckeditor5-metadata.json"
   ],
   "devDependencies": {
-    "@ckeditor/ckeditor5-dev-build-tools": "^43.1.0",
-    "@ckeditor/ckeditor5-package-tools": "^4.0.2",
+    "@ckeditor/ckeditor5-dev-build-tools": "^53.1.0",
+    "@ckeditor/ckeditor5-package-tools": "^4.1.0",
     "typescript": "5.0.4"
   },
   "author": "VINADES.,JSC (https://vinades.vn/)",
