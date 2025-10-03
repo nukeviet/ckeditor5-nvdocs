@@ -22,7 +22,8 @@ import {
 	createLabeledInputNumber,
 	createLabeledInputText,
 	createLabeledDropdown,
-	submitHandler
+	submitHandler,
+	type Editor
 } from 'ckeditor5';
 import { FocusTracker, KeystrokeHandler, type Locale } from 'ckeditor5/src/utils.js';
 
@@ -143,12 +144,16 @@ export class NVDocsFormView extends View {
 	 */
 	private browseUrl?: string;
 
+	private editor: Editor;
+
 	/**
 	 * @param validators Array of form validators.
 	 * @param locale
 	 */
-	constructor(validators: Array<(v: NVDocsFormView) => boolean>, locale: Locale, browseUrl?: string) {
-		super(locale);
+	constructor(validators: Array<(v: NVDocsFormView) => boolean>, editor: Editor, browseUrl?: string) {
+		super(editor.locale);
+		this.editor = editor;
+		const locale: Locale = editor.locale;
 
 		this.focusTracker = new FocusTracker();
 		this.keystrokes = new KeystrokeHandler();
@@ -685,7 +690,7 @@ export class NVDocsFormView extends View {
     		}
 		});
 		button.on('execute', () => {
-			console.log('Browse server');
+			this.editor.execute('nvbox');
 		});
 
 		return button;

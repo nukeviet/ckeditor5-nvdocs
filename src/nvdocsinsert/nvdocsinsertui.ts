@@ -63,6 +63,18 @@ export default class NVDocsInsertUI extends Plugin {
     }
 
     /**
+     * Đặt URL cho form
+     *
+     * @param url
+     */
+    public setUrl(url: string) {
+        if (this._formView) {
+            this._formView.url = url;
+            this._formView.resetFormStatus();
+        }
+    }
+
+    /**
      * Creates a dialog button.
      * @param ButtonClass The button class to instantiate.
      * @returns The created button instance.
@@ -117,8 +129,8 @@ export default class NVDocsInsertUI extends Plugin {
         const isNVDocsSelected = command.isEnabled;
 
         if (!this._formView) {
-            const browseUrl = editor.config.get('nvdocs.browseUrl');
-            this._formView = new (CssTransitionDisablerMixin(NVDocsFormView))(getFormValidators(editor), editor.locale, browseUrl);
+            const browseUrl = editor.config.get('nvbox.browseUrl') as string | undefined;
+            this._formView = new (CssTransitionDisablerMixin(NVDocsFormView))(getFormValidators(editor), editor, browseUrl);
             this._formView.on('submit', () => this._handleSubmitForm());
         }
 
