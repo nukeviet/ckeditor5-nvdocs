@@ -690,7 +690,7 @@ export class NVDocsFormView extends View {
     		}
 		});
 		button.on('execute', () => {
-			this.editor.execute('nvbox');
+			this.editor.execute('nvbox', button.element);
 		});
 
 		return button;

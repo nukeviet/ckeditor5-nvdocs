@@ -13,7 +13,8 @@ import {
     MenuBarMenuListItemButtonView,
     Plugin,
     Locale,
-    Editor
+    Editor,
+    type Dialog
 } from 'ckeditor5';
 
 import nvdocsIcon from '../../theme/icons/nvdocs.svg';
@@ -139,7 +140,9 @@ export default class NVDocsInsertUI extends Plugin {
             title: isNVDocsSelected ? t('Update document') : t('Insert document'),
             content: this._formView,
             isModal: true,
-            onShow: () => {
+            onShow: (dlg: Dialog) => {
+                dlg.view?.element?.classList.add('ck-nvdocs-dialog');
+
                 this._formView!.widthType = command.isEnabled ? (command.type || 'auto') : 'auto';
                 this._formView!.width = command.isEnabled ? (command.width || 710) : 710;
                 this._formView!.height = command.isEnabled ? (command.height || 920) : 920;

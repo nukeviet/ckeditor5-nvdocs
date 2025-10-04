@@ -43,3 +43,7 @@
     }
   }
 }
+
+.ck.ck-dialog-overlay.ck-nvdocs-dialog {
+  z-index: 1058;
+}
