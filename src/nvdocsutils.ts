@@ -191,6 +191,49 @@ export default class NVDocsUtils extends Plugin {
 
         return true;
     }
+
+    private _getDomain(): string {
+        let domain = window.location.origin;
+        if (!domain) {
+            domain = window.location.protocol + '//' + window.location.host;
+            if (window.location.port != '80' && window.location.port != '443') {
+                domain += ':' + window.location.port;
+            }
+        }
+        return domain;
+    }
+
+    /**
+     * Chuyển đổi URL tuyệt đối thành URL tương đối
+     *
+     * @param absoluteUrl URL tuyệt đối
+     * @returns URL tương đối
+     */
+    public toRelativeUrl(absoluteUrl: string): string {
+        const domain = this._getDomain();
+        if (absoluteUrl.indexOf(domain) == 0) {
+            absoluteUrl = absoluteUrl.substring(domain.length);
+        }
+        return absoluteUrl;
+    }
+
+    /**
+     * Chuyển đổi URL tương đối thành URL tuyệt đối
+     *
+     * @param relativeUrl URL tương đối
+     * @returns URL tuyệt đối
+     */
+    public toAbsoluteUrl(relativeUrl: string): string {
+        const domain = this._getDomain();
+        if (relativeUrl.indexOf('http') != 0 && relativeUrl.indexOf('//') != 0) {
+            if (relativeUrl.indexOf('/') == 0) {
+                relativeUrl = domain + relativeUrl;
+            } else {
+                relativeUrl = domain + '/' + relativeUrl;
+            }
+        }
+        return relativeUrl;
+    }
 }
 
 /**

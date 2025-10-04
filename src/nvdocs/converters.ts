@@ -72,12 +72,15 @@ export function downcastNVDocsAttribute(nvdocsUtils: NVDocsUtils, attributeKeys:
 
 				// Xử lý src từ dạng thuần sang embed
 				if (data.attributeKey == 'src') {
+					const url = nvdocsUtils.toAbsoluteUrl(data.attributeNewValue as string || '');
+
+					// Xử lý link
 					if (modelElement.getAttribute('provider') == 'google') {
 						// Google Docs
-						data.attributeNewValue = 'https://docs.google.com/viewer?url=' + encodeURIComponent(data.attributeNewValue as string || '') + '&embedded=true';
+						data.attributeNewValue = 'https://docs.google.com/viewer?url=' + encodeURIComponent(url) + '&embedded=true';
 					} else {
 						// Microsoft Office
-						data.attributeNewValue = 'https://view.officeapps.live.com/op/embed.aspx?src=' + encodeURIComponent(data.attributeNewValue as string || '');
+						data.attributeNewValue = 'https://view.officeapps.live.com/op/embed.aspx?src=' + encodeURIComponent(url);
 					}
 				}
 
@@ -129,7 +132,7 @@ export function upcastNVDocsDivStructure(nvdocsUtils: NVDocsUtils, editor: Edito
 		let ratio = viewDiv.getAttribute('data-docs-ratio') || '';
 		let provider = viewDiv.getAttribute('data-docs-provider') || 'google';
 		const urlView = viewPrimary ? (viewPrimary.getAttribute('src') || '') : '';
-		let url = getOriginalLink(urlView);
+		let url = nvdocsUtils.toRelativeUrl(getOriginalLink(urlView));
 
 		if (isNaN(width) || width <= 0 || width > 9999) {
 			width = 710;
@@ -216,7 +219,7 @@ export function upcastV4NVDocviewer(nvdocsUtils: NVDocsUtils, editor: Editor): (
 		if (isNaN(width) || width <= 0 || width > 9999) width = 710;
 		if (isNaN(height) || height <= 0 || height > 9999) height = 920;
 		const viewSrc = primaryEl.getAttribute('src') || '';
-		const src = getOriginalLink(viewSrc);
+		const src = nvdocsUtils.toRelativeUrl(getOriginalLink(viewSrc));
 		if (!src) return;
 		let ratio: [number, number];
 		let typeWidth: 'fixed' | 'auto';
