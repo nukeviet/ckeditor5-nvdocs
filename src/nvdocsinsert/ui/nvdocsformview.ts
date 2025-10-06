@@ -690,7 +690,13 @@ export class NVDocsFormView extends View {
     		}
 		});
 		button.on('execute', () => {
-			this.editor.execute('nvbox', button.element);
+			this.editor.execute('nvbox', button.element, {
+				imgfile: this.url,
+				callback: (data: Record<string, any>) => {
+					this.url = data.path;
+					this.focus();
+				}
+			});
 		});
 
 		return button;
