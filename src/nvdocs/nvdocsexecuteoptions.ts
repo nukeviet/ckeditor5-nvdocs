@@ -11,24 +11,24 @@
  * Options khi thực thi lệnh chèn nvdocs
  */
 export type NVDocsExecuteCommandOptions = {
-    src: string;
-    width?: number | null;
-    height?: number | null;
-    type?: 'auto' | 'fixed' | null;
-    ratio?: [number, number] | null;
-    provider?: 'microsoft' | 'google' | null;
+	src: string;
+	width?: number | null;
+	height?: number | null;
+	type?: 'auto' | 'fixed' | null;
+	ratio?: [number, number] | null;
+	provider?: 'microsoft' | 'google' | null;
 };
 
 /**
  * @returns Các giá trị mặc định khi thực thi lệnh chèn nvdocs
  */
 export function getDefaultNVDocsExecuteCommandOptions(): NVDocsExecuteCommandOptions {
-    return {
-        src: '',
-        width: 710,
-        height: 920,
-        type: 'auto',
-        ratio: [1, 2],
-        provider: 'microsoft'
-    };
+	return {
+		src: '',
+		width: 710,
+		height: 920,
+		type: 'auto',
+		ratio: [ 1, 2 ],
+		provider: 'microsoft'
+	};
 }

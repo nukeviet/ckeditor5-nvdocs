@@ -7,9 +7,8 @@
  * @see https://github.com/nukeviet The NukeViet CMS GitHub project
  */
 
-import { Command, type Editor } from 'ckeditor5';
+import { Command, type Editor, type ModelWriter, type ModelElement } from 'ckeditor5';
 import type NVDocsUtils from '../nvdocsutils.js';
-import type { ModelWriter, ModelElement } from 'ckeditor5';
 
 /**
  * Lệnh thay src của nvdocs thành src khác.
@@ -19,59 +18,60 @@ import type { ModelWriter, ModelElement } from 'ckeditor5';
  * ```
  */
 export default class ReplaceNVDocsSourceCommand extends Command {
-    declare public value: string | null;
-    declare public type: 'auto' | 'fixed';
-    declare public width: number | null;
-    declare public height: number | null;
-    declare public ratio: [number, number] | null;
-    declare public provider: 'google' | 'microsoft';
+	declare public value: string | null;
+	declare public type: 'auto' | 'fixed';
+	declare public width: number | null;
+	declare public height: number | null;
+	declare public ratio: [number, number] | null;
+	declare public provider: 'google' | 'microsoft';
 
-    constructor(editor: Editor) {
-        super(editor);
+	constructor( editor: Editor ) {
+		super( editor );
 
-        this.decorate('cleanupNVDocs');
-    }
+		this.decorate( 'cleanupNVDocs' );
+	}
 
-    /**
+	/**
      * @inheritDoc
      */
-    public override refresh(): void {
-        const editor = this.editor;
-        const nvDocsUtils: NVDocsUtils = editor.plugins.get('NVDocsUtils');
-        const element = this.editor.model.document.selection.getSelectedElement()!;
+	public override refresh(): void {
+		const editor = this.editor;
+		const nvDocsUtils: NVDocsUtils = editor.plugins.get( 'NVDocsUtils' );
+		const element = this.editor.model.document.selection.getSelectedElement()!;
 
-        this.isEnabled = nvDocsUtils.isDocs(element);
-        this.value = this.isEnabled ? element.getAttribute('src') as string : null;
-        this.type = this.isEnabled ? element.getAttribute('type') as 'auto' | 'fixed' : 'auto';
-        this.width = this.isEnabled ? element.getAttribute('width') as number : null;
-        this.height = this.isEnabled ? element.getAttribute('height') as number : null;
-        this.ratio = this.isEnabled ? element.getAttribute('ratio') as [number, number] : null;
-        this.provider = this.isEnabled ? element.getAttribute('provider') as 'google' | 'microsoft' : 'microsoft';
-    }
+		this.isEnabled = nvDocsUtils.isDocs( element );
+		this.value = this.isEnabled ? element.getAttribute( 'src' ) as string : null;
+		this.type = this.isEnabled ? element.getAttribute( 'type' ) as 'auto' | 'fixed' : 'auto';
+		this.width = this.isEnabled ? element.getAttribute( 'width' ) as number : null;
+		this.height = this.isEnabled ? element.getAttribute( 'height' ) as number : null;
+		this.ratio = this.isEnabled ? element.getAttribute( 'ratio' ) as [number, number] : null;
+		this.provider = this.isEnabled ? element.getAttribute( 'provider' ) as 'google' | 'microsoft' : 'microsoft';
+	}
 
-    /**
+	/**
      * Executes the command.
      *
      * @fires execute
      * @param options Options for the executed command.
      * @param options.source The url source to replace.
      */
-    public override execute(options: { source: string }): void {
-        const nvdocs = this.editor.model.document.selection.getSelectedElement()!;
+	public override execute( options: { source: string } ): void {
+		const nvdocs = this.editor.model.document.selection.getSelectedElement()!;
 
-        this.editor.model.change(writer => {
-            writer.setAttribute('src', options.source, nvdocs);
-            this.cleanupNVDocs(writer, nvdocs);
-        });
-    }
+		this.editor.model.change( writer => {
+			writer.setAttribute( 'src', options.source, nvdocs );
+			this.cleanupNVDocs( writer, nvdocs );
+		} );
+	}
 
-    public cleanupNVDocs(writer: ModelWriter, nvdocs: ModelElement): void {
-        //writer.removeAttribute('srcset', nvdocs);
-        //writer.removeAttribute('sizes', nvdocs);
-        //writer.removeAttribute('sources', nvdocs);
-        //writer.removeAttribute('width', nvdocs);
-        //writer.removeAttribute('height', nvdocs);
-        //writer.removeAttribute('alt', nvdocs);
-        // Not thing, future features
-    }
+	// eslint-disable-next-line @typescript-eslint/no-unused-vars
+	public cleanupNVDocs( writer: ModelWriter, nvdocs: ModelElement ): void {
+		// writer.removeAttribute('srcset', nvdocs);
+		// writer.removeAttribute('sizes', nvdocs);
+		// writer.removeAttribute('sources', nvdocs);
+		// writer.removeAttribute('width', nvdocs);
+		// writer.removeAttribute('height', nvdocs);
+		// writer.removeAttribute('alt', nvdocs);
+		// Not thing, future features
+	}
 }

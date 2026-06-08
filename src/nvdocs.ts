@@ -14,17 +14,17 @@ import NVDocsInsertUI from './nvdocsinsert/nvdocsinsertui.js';
 import '../theme/nvdocs.css';
 
 export default class NVDocs extends Plugin {
-    /**
+	/**
      * @inheritDoc
      */
-    static get pluginName() {
-        return 'NVDocs' as const;
-    }
+	public static get pluginName() {
+		return 'NVDocs' as const;
+	}
 
-    /**
+	/**
      * @inheritDoc
      */
-    static get requires() {
-        return [NVDocsEditing, NVDocsInsertUI] as const;
-    }
+	public static get requires() {
+		return [ NVDocsEditing, NVDocsInsertUI ] as const;
+	}
 }

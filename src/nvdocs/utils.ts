@@ -18,10 +18,10 @@ import type {
  * @param writer ViewDowncastWriter
  * @returns
  */
-export function createNVDocsViewElement(writer: ViewDowncastWriter): ViewContainerElement {
-	return writer.createContainerElement('div', { class: 'nvck-docs' }, [
-		writer.createContainerElement('div', { class: 'nvck-docs-inner' }, [
-			writer.createEmptyElement('iframe', { class: 'nvck-docs-element' })
-		])
-	]);
+export function createNVDocsViewElement( writer: ViewDowncastWriter ): ViewContainerElement {
+	return writer.createContainerElement( 'div', { class: 'nvck-docs' }, [
+		writer.createContainerElement( 'div', { class: 'nvck-docs-inner' }, [
+			writer.createEmptyElement( 'iframe', { class: 'nvck-docs-element' } )
+		] )
+	] );
 }

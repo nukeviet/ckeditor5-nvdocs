@@ -26,11 +26,12 @@
  * ```
  */
 export interface NVDocsConfig {
-    /*
+
+	/*
      *
      */
-    browseUrl?: string;
-    uploadUrl?: string;
+	browseUrl?: string;
+	uploadUrl?: string;
 }
 
 // export interface NVDocsAttributes extends Record<string, unknown> {

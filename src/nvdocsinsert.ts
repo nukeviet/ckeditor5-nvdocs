@@ -11,17 +11,17 @@ import { Plugin } from 'ckeditor5';
 import NVDocsInsertUI from './nvdocsinsert/nvdocsinsertui.js';
 
 export default class NVDocsInsert extends Plugin {
-    /**
+	/**
      * @inheritDoc
      */
-    static get pluginName() {
-        return 'NVDocsInsert' as const;
-    }
+	public static get pluginName() {
+		return 'NVDocsInsert' as const;
+	}
 
-    /**
+	/**
      * @inheritDoc
      */
-    static get requires() {
-        return [NVDocsInsertUI] as const;
-    }
+	public static get requires() {
+		return [ NVDocsInsertUI ] as const;
+	}
 }
